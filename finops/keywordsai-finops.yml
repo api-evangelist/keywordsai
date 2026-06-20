@@ -1,0 +1,105 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Keywords AI
+providerId: keywordsai
+created: '2026-06-20'
+modified: '2026-06-20'
+reconciled: true
+tags:
+- AI
+- LLM
+- Observability
+- Gateway
+- Monitoring
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of Keywords AI spend. Keywords AI bills a seat + usage model:
+  plan subscription (per organization, with a base member count and per-seat
+  add-ons), a monthly allowance of logs (request logs / spans) and evaluation
+  scores, and per-block overage beyond the allowance ($8 per 100k logs, $1 per
+  1k scores). LLM gateway inference is a pass-through of the underlying model
+  provider's per-token rates. (Platform is rebranding to Respan.)
+notes: >-
+  Plan prices and allowances are subject to change; verify against the
+  Keywords AI / Respan pricing page during reconciliation. Gateway token costs
+  are governed by the routed model provider, not Keywords AI directly.
+sources:
+- https://www.keywordsai.co/pricing
+- https://docs.keywordsai.co
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Keywords AI
+serviceCategory: AI and Machine Learning
+billingModel:
+  pricingCategory: Subscription and Usage-Based
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+  - Purchase
+  - Usage
+  - Adjustment
+focusColumns:
+  ServiceName: Keywords AI
+  ServiceCategory: AI and Machine Learning
+  ProviderName: Keywords AI
+  PublisherName: Keywords AI
+  InvoiceIssuerName: Keywords AI
+  BillingCurrency: USD
+  ChargeCategory: Usage
+  PricingCategory: Subscription and Usage-Based
+meters:
+- name: plan_subscription
+  description: Monthly plan subscription fee per organization (base members included).
+  unit: subscription
+  aggregation: sum
+  dimensions:
+  - account
+  - plan
+- name: seats
+  description: Additional team members beyond the plan's included base count.
+  unit: seats
+  aggregation: sum
+  dimensions:
+  - account
+  - plan
+- name: logs
+  description: Request logs / spans ingested; billed per 100k beyond the plan allowance.
+  unit: logs
+  aggregation: sum
+  dimensions:
+  - account
+  - environment
+- name: scores
+  description: Evaluation scores produced by evaluators; billed per 1k beyond the plan allowance.
+  unit: scores
+  aggregation: sum
+  dimensions:
+  - account
+  - evaluator
+- name: gateway_tokens
+  description: Tokens routed through the LLM gateway proxy; passed through at the underlying model provider's rate.
+  unit: tokens
+  aggregation: sum
+  dimensions:
+  - account
+  - model
+principles:
+- name: Visibility
+  description: Use the dashboard and exports to inspect per-model token burn, log volume, and score counts.
+- name: Allocation
+  description: Tag traffic by customer_identifier and metadata; map to teams and cost centers.
+- name: Optimization
+  description: Use prompt caching, fallbacks, and smaller models via the gateway; sample or filter logs to stay within allowances.
+- name: Accountability
+  description: Assign owners per project; review log/score overage and gateway token spend monthly against budget.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

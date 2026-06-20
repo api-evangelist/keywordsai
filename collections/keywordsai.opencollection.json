@@ -1,0 +1,285 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Keywords AI API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Gateway",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a chat completion",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.keywordsai.co/api/chat/completions",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"model\": \"gpt-4o-mini\",\n  \"messages\": [{\"role\": \"user\", \"content\": \"Reply with exactly ok.\"}],\n  \"max_tokens\": 16,\n  \"temperature\": 0\n}"
+            }
+          },
+          "docs": "OpenAI-compatible chat completion through the Keywords AI gateway. Set stream=true for Server-Sent Events."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Logging",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a request log",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.keywordsai.co/api/request-logs/",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"model\": \"gpt-4o\",\n  \"prompt_messages\": [{\"role\": \"user\", \"content\": \"Hello\"}],\n  \"completion_message\": {\"role\": \"assistant\", \"content\": \"Hi there!\"},\n  \"customer_identifier\": \"user_123\"\n}"
+            }
+          },
+          "docs": "Asynchronously ingest LLM call telemetry. Legacy alias: /request-logs/create/."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Prompts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a prompt",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.keywordsai.co/api/prompts/",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"name\": \"customer_support\"\n}"
+            }
+          },
+          "docs": "Create a prompt."
+        },
+        {
+          "info": {
+            "name": "List prompts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.keywordsai.co/api/prompts/"
+          },
+          "docs": "List prompts."
+        },
+        {
+          "info": {
+            "name": "Retrieve a prompt",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.keywordsai.co/api/prompts/:prompt_id/",
+            "params": [
+              {
+                "name": "prompt_id",
+                "value": "",
+                "type": "path",
+                "description": "The prompt id or slug"
+              }
+            ]
+          },
+          "docs": "Retrieve a prompt by id or slug."
+        },
+        {
+          "info": {
+            "name": "Create a prompt version",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.keywordsai.co/api/prompts/:prompt_id/versions/",
+            "params": [
+              {
+                "name": "prompt_id",
+                "value": "",
+                "type": "path",
+                "description": "The prompt id or slug"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{\n  \"model\": \"gpt-4o\",\n  \"messages\": [{\"role\": \"system\", \"content\": \"You are a helpful {{role}} assistant.\"}],\n  \"temperature\": 0.7\n}"
+            }
+          },
+          "docs": "Create a new version of a prompt with templated messages and model config."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Threads",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List threads",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.keywordsai.co/api/log_threads/",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"page\": 1,\n  \"page_size\": 50\n}"
+            }
+          },
+          "docs": "Retrieve conversation threads matching filters, with pagination."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Traces",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List traces",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.keywordsai.co/api/traces/list/",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"page\": 1,\n  \"page_size\": 50\n}"
+            }
+          },
+          "docs": "List traces with filtering and pagination."
+        },
+        {
+          "info": {
+            "name": "Retrieve a trace",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.keywordsai.co/api/traces/:trace_id/",
+            "params": [
+              {
+                "name": "trace_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a trace and its spans."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Evaluators",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create an evaluator",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.keywordsai.co/api/evaluators/",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"name\": \"answer_relevance\",\n  \"type\": \"llm\"\n}"
+            }
+          },
+          "docs": "Create an evaluator."
+        },
+        {
+          "info": {
+            "name": "List evaluators",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.keywordsai.co/api/evaluators/list/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "List evaluators matching filters."
+        },
+        {
+          "info": {
+            "name": "Run an evaluator",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.keywordsai.co/api/evaluators/:evaluator_id/run/",
+            "params": [
+              {
+                "name": "evaluator_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{\n  \"input\": \"What is the capital of France?\",\n  \"output\": \"Paris\"\n}"
+            }
+          },
+          "docs": "Run an evaluator against supplied input/output and return scores."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List users (customers)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.keywordsai.co/api/users/list/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "List end-user (customer) records with analytics and budget fields."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

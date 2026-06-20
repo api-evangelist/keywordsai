@@ -1,0 +1,317 @@
+{
+  "info": {
+    "name": "Keywords AI API",
+    "description": "OpenAI-compatible LLM gateway plus observability REST APIs (logging, prompts, threads, traces, evaluations, users) served from https://api.keywordsai.co/api with Bearer authentication.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.keywordsai.co/api",
+      "type": "string"
+    },
+    {
+      "key": "bearerToken",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Gateway",
+      "item": [
+        {
+          "name": "Create a chat completion",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/chat/completions",
+              "host": ["{{baseUrl}}"],
+              "path": ["chat", "completions"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"model\": \"gpt-4o-mini\",\n  \"messages\": [{\"role\": \"user\", \"content\": \"Reply with exactly ok.\"}],\n  \"max_tokens\": 16,\n  \"temperature\": 0\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "description": "OpenAI-compatible chat completion through the Keywords AI gateway. Set stream=true for Server-Sent Events."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Logging",
+      "item": [
+        {
+          "name": "Create a request log",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/request-logs/",
+              "host": ["{{baseUrl}}"],
+              "path": ["request-logs", ""]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"model\": \"gpt-4o\",\n  \"prompt_messages\": [{\"role\": \"user\", \"content\": \"Hello\"}],\n  \"completion_message\": {\"role\": \"assistant\", \"content\": \"Hi there!\"},\n  \"prompt_tokens\": 8,\n  \"completion_tokens\": 4,\n  \"cost\": 0.00012,\n  \"latency\": 0.42,\n  \"customer_identifier\": \"user_123\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "description": "Asynchronously ingest LLM call telemetry. Legacy alias: /request-logs/create/."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Prompts",
+      "item": [
+        {
+          "name": "Create a prompt",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/prompts/",
+              "host": ["{{baseUrl}}"],
+              "path": ["prompts", ""]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"customer_support\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "description": "Create a prompt."
+          }
+        },
+        {
+          "name": "List prompts",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/prompts/",
+              "host": ["{{baseUrl}}"],
+              "path": ["prompts", ""]
+            },
+            "description": "List prompts."
+          }
+        },
+        {
+          "name": "Retrieve a prompt",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/prompts/:prompt_id/",
+              "host": ["{{baseUrl}}"],
+              "path": ["prompts", ":prompt_id", ""],
+              "variable": [
+                { "key": "prompt_id", "value": "", "description": "The prompt id or slug" }
+              ]
+            },
+            "description": "Retrieve a prompt by id or slug."
+          }
+        },
+        {
+          "name": "Create a prompt version",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/prompts/:prompt_id/versions/",
+              "host": ["{{baseUrl}}"],
+              "path": ["prompts", ":prompt_id", "versions", ""],
+              "variable": [
+                { "key": "prompt_id", "value": "", "description": "The prompt id or slug" }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"model\": \"gpt-4o\",\n  \"messages\": [{\"role\": \"system\", \"content\": \"You are a helpful {{role}} assistant.\"}],\n  \"temperature\": 0.7\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "description": "Create a new version of a prompt with templated messages and model config."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Threads",
+      "item": [
+        {
+          "name": "List threads",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/log_threads/",
+              "host": ["{{baseUrl}}"],
+              "path": ["log_threads", ""]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"page\": 1,\n  \"page_size\": 50\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "description": "Retrieve conversation threads matching filters, with pagination."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Traces",
+      "item": [
+        {
+          "name": "List traces",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/traces/list/",
+              "host": ["{{baseUrl}}"],
+              "path": ["traces", "list", ""]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"page\": 1,\n  \"page_size\": 50\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "description": "List traces with filtering and pagination."
+          }
+        },
+        {
+          "name": "Retrieve a trace",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/traces/:trace_id/",
+              "host": ["{{baseUrl}}"],
+              "path": ["traces", ":trace_id", ""],
+              "variable": [
+                { "key": "trace_id", "value": "" }
+              ]
+            },
+            "description": "Retrieve a trace and its spans."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Evaluators",
+      "item": [
+        {
+          "name": "Create an evaluator",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/evaluators/",
+              "host": ["{{baseUrl}}"],
+              "path": ["evaluators", ""]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"answer_relevance\",\n  \"type\": \"llm\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "description": "Create an evaluator."
+          }
+        },
+        {
+          "name": "List evaluators",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/evaluators/list/",
+              "host": ["{{baseUrl}}"],
+              "path": ["evaluators", "list", ""]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "description": "List evaluators matching filters."
+          }
+        },
+        {
+          "name": "Run an evaluator",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/evaluators/:evaluator_id/run/",
+              "host": ["{{baseUrl}}"],
+              "path": ["evaluators", ":evaluator_id", "run", ""],
+              "variable": [
+                { "key": "evaluator_id", "value": "" }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"input\": \"What is the capital of France?\",\n  \"output\": \"Paris\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "description": "Run an evaluator against supplied input/output and return scores."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "List users (customers)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/users/list/",
+              "host": ["{{baseUrl}}"],
+              "path": ["users", "list", ""]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "description": "List end-user (customer) records with analytics and budget fields."
+          }
+        }
+      ]
+    }
+  ]
+}

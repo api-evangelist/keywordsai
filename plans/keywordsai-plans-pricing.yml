@@ -1,0 +1,176 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Keywords AI
+providerId: keywordsai
+created: '2026-06-20'
+modified: '2026-06-20'
+reconciled: true
+tags:
+- AI
+- LLM
+- Observability
+- Gateway
+- Monitoring
+- Plans
+description: >-
+  Keywords AI prices its observability platform on a seat + usage model. Tiers
+  bundle a monthly allowance of logs (request logs / spans) and evaluation
+  scores; usage beyond the allowance is billed per-block (per 100k logs and per
+  1k scores). LLM gateway inference is passed through at the underlying model
+  provider's token rates. The platform is rebranding to Respan; pricing below
+  reflects the current published page.
+notes: >-
+  Pricing observed 2026-06-20 on the (rebranded Respan) pricing page: Free tier
+  100k logs/month and 1k scores/month; Team $199/month billed yearly (5 members,
+  +$15/additional member) with unlimited logs and 10k scores/month; Enterprise
+  custom. Overage: $8 per 100k additional logs, $1 per 1k additional scores.
+  An earlier Keywords AI pricing structure advertised a $7/seat Pro tier and a
+  smaller free allowance; verify the current page on reconciliation as the
+  rebrand settles.
+sources:
+- https://www.keywordsai.co/pricing
+- https://www.respan.ai/pricing
+- https://docs.keywordsai.co
+plans:
+- id: keywordsai-free
+  name: Free
+  type: free
+  description: >-
+    Full platform access for individuals and early projects with a monthly
+    allowance of logs and evaluation scores.
+  entries:
+  - label: Included Logs
+    name: free_logs
+    type: usage
+    metric: logs
+    limit: 100000
+    timeFrame: month
+    geo: global
+    unit: 100000
+    price: included
+    userMultiplied: false
+  - label: Included Scores
+    name: free_scores
+    type: usage
+    metric: scores
+    limit: 1000
+    timeFrame: month
+    geo: global
+    unit: 1000
+    price: included
+    userMultiplied: false
+  - label: Additional Logs
+    name: free_logs_overage
+    type: usage
+    metric: logs
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 100000
+    price: $8 per 100k logs
+    userMultiplied: false
+  elements:
+  - name: Full Platform Access
+  - name: 5 Prompts
+  - name: 5 Datasets
+  - name: 2 Evaluators
+  - name: LLM Gateway
+  - name: Logging
+- id: keywordsai-team
+  name: Team
+  type: paid
+  description: >-
+    Team plan for high-growth startups with unlimited logs, collaboration,
+    version control, and compliance reporting. Billed per organization with a
+    base of 5 members.
+  entries:
+  - label: Base Subscription
+    name: team_base
+    type: flat
+    metric: subscription
+    limit: 1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $199 per month (billed yearly, includes 5 members)
+    userMultiplied: false
+  - label: Additional Member
+    name: team_seat
+    type: usage
+    metric: seats
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $15 per additional member per month
+    userMultiplied: true
+  - label: Included Logs
+    name: team_logs
+    type: usage
+    metric: logs
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: unlimited
+    userMultiplied: false
+  - label: Included Scores
+    name: team_scores
+    type: usage
+    metric: scores
+    limit: 10000
+    timeFrame: month
+    geo: global
+    unit: 1000
+    price: included
+    userMultiplied: false
+  - label: Additional Scores
+    name: team_scores_overage
+    type: usage
+    metric: scores
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1000
+    price: $1 per 1k scores
+    userMultiplied: false
+  elements:
+  - name: Unlimited Logs
+  - name: Unlimited Datasets
+  - name: Unlimited Evaluators
+  - name: Unlimited Prompts
+  - name: Version Control
+  - name: One-Click Deployment
+  - name: Private Slack Channel
+  - name: SOC 2 Report
+- id: keywordsai-enterprise
+  name: Enterprise
+  type: enterprise
+  description: >-
+    Custom packages for large organizations with volume discounts, dedicated
+    support, security/compliance, and self-hosted deployment. Contact sales.
+  entries:
+  - label: Enterprise Agreement
+    name: enterprise
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Custom Logs and Scores
+  - name: Volume Discounts
+  - name: Custom SLAs
+  - name: Dedicated Support Engineer
+  - name: HIPAA BAA
+  - name: SOC 2
+  - name: Self-Hosted Deployment
+  - name: SSO
+  - name: PII Masking
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

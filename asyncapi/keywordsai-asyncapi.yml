@@ -1,0 +1,214 @@
+asyncapi: '2.6.0'
+id: 'urn:co:keywordsai:api:chat-completions:sse'
+info:
+  title: Keywords AI Chat Completions Streaming (HTTP + SSE)
+  version: '1.0.0'
+  description: |
+    AsyncAPI 2.6 description of Keywords AI's **chat completion streaming**
+    surface on the OpenAI-compatible gateway.
+
+    Keywords AI does not publish a WebSocket API. The only asynchronous /
+    event-style transport documented for chat is **HTTP Server-Sent Events
+    (SSE)** delivered over the same REST endpoint
+    (`POST /chat/completions`) when the request body sets `stream: true`. SSE
+    is a one-way, server-to-client HTTP streaming channel; it is **not**
+    WebSocket.
+
+    Tokens are sent as data-only server-sent events as they become available,
+    with the stream terminated by a `data: [DONE]` message.
+
+    This AsyncAPI document models only the streamed events emitted by the SSE
+    response. The request body itself (model, messages, tools, etc.) is modeled
+    in the companion OpenAPI document at `openapi/keywordsai-openapi.yml`.
+
+    Note: the company is rebranding to Respan; the keywordsai.co host and API
+    remain active.
+  contact:
+    name: API Evangelist
+    email: kin@apievangelist.com
+    url: https://apievangelist.com
+  license:
+    name: API documentation - Keywords AI Terms of Service
+    url: https://www.keywordsai.co/terms-of-service
+  x-transport-notes:
+    transport: HTTP Server-Sent Events (SSE)
+    protocol: https
+    direction: server-to-client (one-way)
+    mediaType: text/event-stream
+    triggeredBy: 'POST https://api.keywordsai.co/api/chat/completions with request body { "stream": true }'
+    terminator: 'data: [DONE]'
+    notWebSocket: true
+    source: https://docs.keywordsai.co/api-endpoints/integration/chat-completions
+defaultContentType: text/event-stream
+servers:
+  keywordsai:
+    url: api.keywordsai.co/api
+    protocol: https
+    description: |
+      Keywords AI's OpenAI-compatible REST base. Chat completion streaming is
+      delivered as HTTP Server-Sent Events over this base when `stream: true`
+      is set on the JSON request body. AsyncAPI 2.6 does not define a dedicated
+      SSE protocol identifier; `https` is used here and the SSE transport is
+      documented in `info.x-transport-notes` and on each channel.
+    security:
+      - bearerAuth: []
+channels:
+  /chat/completions:
+    description: |
+      Chat completion SSE stream. The client opens this channel by issuing
+      `POST /chat/completions` with `Content-Type: application/json` and a JSON
+      body containing `stream: true`. The server responds with
+      `Content-Type: text/event-stream` and emits a sequence of `data:` lines,
+      each carrying one JSON-serialized `chat.completion.chunk` object, followed
+      by a final `data: [DONE]` line.
+    bindings:
+      http:
+        type: request
+        method: POST
+        bindingVersion: '0.3.0'
+      x-sse:
+        mediaType: text/event-stream
+        eventField: 'data'
+        terminator: '[DONE]'
+    subscribe:
+      operationId: streamChatCompletionChunks
+      summary: Subscribe to streamed chat completion chunks (SSE).
+      description: |
+        After `POST /chat/completions` is issued with `stream: true`, the
+        server emits an ordered sequence of SSE `data:` events. Each `data:`
+        line either carries a JSON-serialized `ChatCompletionChunk` or the
+        literal sentinel `[DONE]` marking end of stream.
+      bindings:
+        http:
+          type: response
+          bindingVersion: '0.3.0'
+      message:
+        oneOf:
+          - $ref: '#/components/messages/ChatCompletionChunk'
+          - $ref: '#/components/messages/StreamDone'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: 'Keywords AI API key'
+      description: |
+        Standard Keywords AI bearer token. Set the
+        `Authorization: Bearer <KEYWORDSAI_API_KEY>` header on the
+        `POST /chat/completions` request that opens the SSE stream.
+  messages:
+    ChatCompletionChunk:
+      name: ChatCompletionChunk
+      title: Streamed chat completion chunk
+      summary: |
+        A single SSE `data:` event carrying one JSON `chat.completion.chunk`
+        object. Many of these are emitted per request, in order.
+      contentType: application/json
+      description: |
+        Sent as `data: {json}\n\n` on the SSE stream. The JSON object's
+        `object` field is the literal string `chat.completion.chunk`. The
+        shape follows the OpenAI-compatible chat completion chunk schema that
+        the Keywords AI gateway proxies.
+      payload:
+        $ref: '#/components/schemas/ChatCompletionChunk'
+      examples:
+        - name: openingChunk
+          summary: First chunk - establishes role
+          payload:
+            id: chatcmpl-abc123
+            object: chat.completion.chunk
+            created: 1781827200
+            model: gpt-4o-mini
+            choices:
+              - index: 0
+                delta:
+                  role: assistant
+                  content: ''
+                finish_reason: null
+        - name: contentChunk
+          summary: Token delta
+          payload:
+            id: chatcmpl-abc123
+            object: chat.completion.chunk
+            created: 1781827200
+            model: gpt-4o-mini
+            choices:
+              - index: 0
+                delta:
+                  content: 'Hello'
+                finish_reason: null
+        - name: finalChunk
+          summary: Final chunk - finish_reason set
+          payload:
+            id: chatcmpl-abc123
+            object: chat.completion.chunk
+            created: 1781827200
+            model: gpt-4o-mini
+            choices:
+              - index: 0
+                delta: {}
+                finish_reason: stop
+    StreamDone:
+      name: StreamDone
+      title: Stream termination sentinel
+      summary: |
+        The literal SSE event `data: [DONE]` that terminates the stream. It is
+        not JSON; it is the raw token `[DONE]`.
+      contentType: text/plain
+      payload:
+        type: string
+        const: '[DONE]'
+      examples:
+        - name: done
+          summary: Termination sentinel
+          payload: '[DONE]'
+  schemas:
+    ChatCompletionChunk:
+      type: object
+      required:
+        - id
+        - object
+        - created
+        - model
+        - choices
+      properties:
+        id:
+          type: string
+        object:
+          type: string
+          const: chat.completion.chunk
+        created:
+          type: integer
+        model:
+          type: string
+        choices:
+          type: array
+          items:
+            type: object
+            properties:
+              index:
+                type: integer
+              delta:
+                type: object
+                properties:
+                  role:
+                    type: string
+                  content:
+                    type: string
+                  tool_calls:
+                    type: array
+                    items:
+                      type: object
+              finish_reason:
+                type: string
+                nullable: true
+        usage:
+          type: object
+          nullable: true
+          properties:
+            prompt_tokens:
+              type: integer
+            completion_tokens:
+              type: integer
+            total_tokens:
+              type: integer

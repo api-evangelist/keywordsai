@@ -1,0 +1,72 @@
+aid: keywordsai
+name: Keywords AI
+review:
+  question: Does Keywords AI expose a documented public WebSocket API?
+  answer: false
+  date: '2026-06-20'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: true
+  asyncapiScopeNote: |
+    Per API Evangelist scope, HTTP Server-Sent Events (SSE) is in-scope for
+    AsyncAPI modeling. An AsyncAPI 2.6 document was created at
+    asyncapi/keywordsai-asyncapi.yml describing the chat completion SSE stream
+    (POST /chat/completions with stream=true) on the OpenAI-compatible gateway.
+    No WebSocket surface was modeled because none is documented.
+findings:
+  summary: |
+    Keywords AI does not publish a documented public WebSocket API. The
+    platform exposes only REST (HTTPS) endpoints under
+    https://api.keywordsai.co/api with Bearer authentication. The gateway is
+    OpenAI-compatible; streaming for chat completions is delivered as HTTP
+    Server-Sent Events (SSE) via the `stream: true` parameter on the REST
+    endpoint. SSE is a one-way HTTP streaming transport and is not WebSocket.
+    No realtime, bidirectional WebSocket (ws:// or wss://) endpoint is
+    documented for chat, logging, prompts, threads, traces, or evaluations.
+    Note: the company is rebranding to Respan; the keywordsai.co host and API
+    remain active and documentation redirects to respan.ai/docs.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.keywordsai.co/api
+      documented: true
+    - protocol: SSE
+      scheme: https
+      note: Server-Sent Events delivered over the same REST chat completions endpoint when stream=true. Not WebSocket.
+      documented: true
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented in the Keywords AI / Respan API reference as of the review date.
+  endpointsConfirmedRest:
+    - POST https://api.keywordsai.co/api/chat/completions
+    - POST https://api.keywordsai.co/api/request-logs/
+    - POST https://api.keywordsai.co/api/prompts/
+    - GET  https://api.keywordsai.co/api/prompts/
+    - GET  https://api.keywordsai.co/api/prompts/{prompt_id}/
+    - POST https://api.keywordsai.co/api/prompts/{prompt_id}/versions/
+    - POST https://api.keywordsai.co/api/log_threads/
+    - POST https://api.keywordsai.co/api/traces/list/
+    - GET  https://api.keywordsai.co/api/traces/{trace_id}/
+    - POST https://api.keywordsai.co/api/evaluators/
+    - POST https://api.keywordsai.co/api/evaluators/list/
+    - POST https://api.keywordsai.co/api/users/list/
+    - POST https://api.keywordsai.co/api/datasets/
+    - POST https://api.keywordsai.co/api/experiments/
+sources:
+  - url: https://docs.keywordsai.co
+    type: Documentation
+    note: Overview lists REST base URL https://api.keywordsai.co/api; redirects to respan.ai/docs after rebrand.
+  - url: https://docs.keywordsai.co/api-endpoints/integration/chat-completions
+    type: APIReference
+    note: Chat completions are OpenAI-compatible HTTPS REST; streaming via stream=true (SSE).
+  - url: https://docs.keywordsai.co/api-endpoints/async-endpoints/request-logging-endpoint
+    type: Documentation
+    note: Asynchronous request logging via POST /request-logs/ (legacy alias /request-logs/create/).
+actions:
+  asyncapiPath: asyncapi/keywordsai-asyncapi.yml
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket protocol surface exists. Under API Evangelist scope that
+    allows SSE in AsyncAPI, an AsyncAPI 2.6 document was authored for the chat
+    completion SSE stream, with HTTP+SSE transport documented explicitly
+    throughout the spec so SSE is never misrepresented as WebSocket.

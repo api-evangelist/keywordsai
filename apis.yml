@@ -1,0 +1,156 @@
+aid: keywordsai
+url: https://raw.githubusercontent.com/api-evangelist/keywordsai/refs/heads/main/apis.yml
+name: Keywords AI
+kind: company
+description: Keywords AI is an LLM observability and gateway platform. It exposes an
+  OpenAI-compatible proxy (chat completions across 250+ models) plus REST APIs for
+  request logging, prompt management, threads, evaluations, and traces - all under a
+  single Bearer-authenticated API at https://api.keywordsai.co/api. (The company is
+  rebranding to Respan; the keywordsai.co host and API remain active.)
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- AI
+- LLM
+- Observability
+- Gateway
+- Monitoring
+created: '2026-06-20'
+modified: '2026-06-20'
+specificationVersion: '0.19'
+apis:
+- aid: keywordsai:llm-proxy-chat-completions
+  name: Keywords AI LLM Proxy (Chat Completions)
+  tags:
+  - Chat
+  - Completions
+  - Gateway
+  - LLM
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.keywordsai.co/api-endpoints/integration/chat-completions
+  baseURL: https://api.keywordsai.co/api
+  properties:
+  - url: https://docs.keywordsai.co/api-endpoints/integration/chat-completions
+    type: Documentation
+  - url: https://docs.keywordsai.co/api-endpoints/integration/chat-completions
+    type: APIReference
+  - url: openapi/keywordsai-openapi.yml
+    type: OpenAPI
+  - url: asyncapi/keywordsai-asyncapi.yml
+    type: AsyncAPI
+  - url: collections/keywordsai.postman_collection.json
+    type: PostmanCollection
+  description: OpenAI-compatible chat completions proxy that routes requests to 250+
+    LLMs through one unified endpoint, with streaming (SSE), tool calling, structured
+    outputs, fallbacks, load balancing, caching, and automatic request logging.
+- aid: keywordsai:logging
+  name: Keywords AI Logging API
+  tags:
+  - Logging
+  - Observability
+  - Request Logs
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.keywordsai.co/api-endpoints/async-endpoints/request-logging-endpoint
+  baseURL: https://api.keywordsai.co/api
+  properties:
+  - url: https://docs.keywordsai.co/api-endpoints/async-endpoints/request-logging-endpoint
+    type: Documentation
+  - url: openapi/keywordsai-openapi.yml
+    type: OpenAPI
+  - url: collections/keywordsai.postman_collection.json
+    type: PostmanCollection
+  description: Asynchronous request-logging endpoint for ingesting LLM call telemetry
+    (model, prompt/completion messages, tokens, cost, latency, customer identifier,
+    metadata) when calls are not routed through the gateway proxy.
+- aid: keywordsai:prompts
+  name: Keywords AI Prompts API
+  tags:
+  - Prompts
+  - Prompt Management
+  - Versioning
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.keywordsai.co/api-endpoints/prompt-endpoints/create-prompts
+  baseURL: https://api.keywordsai.co/api
+  properties:
+  - url: https://docs.keywordsai.co/api-endpoints/prompt-endpoints/create-prompts
+    type: Documentation
+  - url: openapi/keywordsai-openapi.yml
+    type: OpenAPI
+  - url: collections/keywordsai.postman_collection.json
+    type: PostmanCollection
+  description: Manage prompts and prompt versions outside of application code -
+    create, list, retrieve, update, and delete prompts; create, commit, and deploy
+    versions with templated messages, models, fallbacks, and sampling parameters.
+- aid: keywordsai:threads
+  name: Keywords AI Threads API
+  tags:
+  - Threads
+  - Conversations
+  - Observability
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.keywordsai.co/api-endpoints/data-endpoints/list-threads
+  baseURL: https://api.keywordsai.co/api
+  properties:
+  - url: https://docs.keywordsai.co/api-endpoints/data-endpoints/list-threads
+    type: Documentation
+  - url: openapi/keywordsai-openapi.yml
+    type: OpenAPI
+  - url: collections/keywordsai.postman_collection.json
+    type: PostmanCollection
+  description: Query multi-turn conversation threads grouped from logged LLM calls,
+    with filtering and pagination for reconstructing end-user sessions.
+- aid: keywordsai:evaluations
+  name: Keywords AI Evaluations API
+  tags:
+  - Evaluations
+  - Evaluators
+  - Quality
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.keywordsai.co/api-endpoints/evaluator-endpoints/create-evaluator
+  baseURL: https://api.keywordsai.co/api
+  properties:
+  - url: https://docs.keywordsai.co/api-endpoints/evaluator-endpoints/create-evaluator
+    type: Documentation
+  - url: openapi/keywordsai-openapi.yml
+    type: OpenAPI
+  - url: collections/keywordsai.postman_collection.json
+    type: PostmanCollection
+  description: Create and run evaluators to score LLM outputs - manage evaluator
+    definitions and execute them against logs and datasets to measure quality,
+    correctness, and safety.
+- aid: keywordsai:traces
+  name: Keywords AI Traces API
+  tags:
+  - Traces
+  - OpenTelemetry
+  - Observability
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.keywordsai.co/api-endpoints/data-endpoints/list-traces
+  baseURL: https://api.keywordsai.co/api
+  properties:
+  - url: https://docs.keywordsai.co/api-endpoints/data-endpoints/list-traces
+    type: Documentation
+  - url: openapi/keywordsai-openapi.yml
+    type: OpenAPI
+  - url: collections/keywordsai.postman_collection.json
+    type: PostmanCollection
+  description: List, retrieve, and delete distributed traces (OpenTelemetry-aligned
+    spans) capturing agent and multi-step LLM workflows for observability and
+    debugging.
+common:
+- type: GitHubOrganization
+  url: https://github.com/Keywords-AI
+- type: LinkedIn
+  url: https://www.linkedin.com/company/keywordsai
+- type: Website
+  url: https://www.keywordsai.co
+- type: Documentation
+  url: https://docs.keywordsai.co
+- type: Plans
+  url: plans/keywordsai-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/keywordsai-rate-limits.yml
+- type: FinOps
+  url: finops/keywordsai-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

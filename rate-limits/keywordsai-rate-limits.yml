@@ -1,0 +1,64 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Keywords AI
+providerId: keywordsai
+created: '2026-06-20'
+modified: '2026-06-20'
+reconciled: false
+tags:
+- AI
+- LLM
+- Observability
+- Gateway
+- Monitoring
+- Rate Limiting
+- Quotas
+- Throttling
+description: >-
+  Keywords AI authenticates all API calls with a Bearer API key and enforces
+  account-level rate limits on the gateway and data endpoints, plus monthly
+  usage quotas on logs and evaluation scores per plan tier. For gateway (proxy)
+  traffic, effective throughput is also bounded by the rate limits of the
+  underlying model provider being routed to. Specific per-endpoint
+  request-per-minute values are not published in a single reference and are not
+  reconciled in this artifact.
+notes: >-
+  Verify current limits against the Keywords AI / Respan documentation and the
+  platform dashboard on reconciliation. Plan-level monthly quotas (logs and
+  scores) are captured in plans/keywordsai-plans-pricing.yml. Throttled
+  responses should be assumed to return HTTP 429.
+sources:
+- https://docs.keywordsai.co
+- https://www.keywordsai.co/pricing
+responseCodes:
+  throttled: 429
+limits:
+- name: Gateway Requests
+  scope: account
+  metric: requests
+  limit: see provider documentation
+  notes: Chat completions proxy; effective throughput also bounded by the routed model provider's limits.
+- name: Data Endpoint Requests
+  scope: account
+  metric: requests
+  limit: see provider documentation
+  notes: Logging, prompts, threads, traces, evaluators, users, datasets, experiments endpoints.
+- name: Monthly Logs Quota
+  scope: account
+  metric: logs
+  limit: per plan tier
+  notes: Free 100k/month; Team unlimited; Enterprise custom. Overage billed per 100k logs.
+- name: Monthly Scores Quota
+  scope: account
+  metric: scores
+  limit: per plan tier
+  notes: Free 1k/month; Team 10k/month; Enterprise custom. Overage billed per 1k scores.
+policies:
+- name: Tiered Limits
+  description: Quotas and limits increase across Free, Team, and Enterprise plans.
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter and honor Retry-After on 429 responses.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
