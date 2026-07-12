@@ -137,6 +137,12 @@ apis:
     spans) capturing agent and multi-step LLM workflows for observability and
     debugging.
 common:
+- type: TrustCenter
+  url: security/keywordsai-trust-center.yml
+- type: DomainSecurity
+  url: security/keywordsai-domain-security.yml
+- type: Authentication
+  url: authentication/keywordsai-authentication.yml
 - type: GitHubOrganization
   url: https://github.com/Keywords-AI
 - type: LinkedIn

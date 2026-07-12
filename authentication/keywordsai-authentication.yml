@@ -1,0 +1,14 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/keywordsai-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  description: 'Keywords AI API key supplied as the Authorization Bearer header (Authorization:
+    Bearer <KEYWORDSAI_API_KEY>).'
+  sources:
+  - openapi/keywordsai-openapi.yml

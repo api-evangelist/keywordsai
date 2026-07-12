@@ -1,0 +1,14 @@
+generated: '2026-07-11'
+method: searched
+probe: true
+source: https://www.respan.ai/
+url: https://www.respan.ai/
+certifications:
+- HIPAA
+- GDPR
+evidence:
+- source: https://www.respan.ai/
+  keywords:
+  - hipaa
+  - trust center
+  - gdpr
