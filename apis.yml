@@ -137,6 +137,8 @@ apis:
     spans) capturing agent and multi-step LLM workflows for observability and
     debugging.
 common:
+- type: AgenticAccess
+  url: agentic-access/keywordsai-agentic-access.yml
 - type: TrustCenter
   url: security/keywordsai-trust-center.yml
 - type: DomainSecurity
