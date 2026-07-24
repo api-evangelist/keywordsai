@@ -1,0 +1,157 @@
+openapi: 3.0.1
+info:
+  title: Keywords AI Datasets Evaluators API
+  description: 'Keywords AI is an LLM observability and gateway platform. This specification documents the publicly documented REST surface served from https://api.keywordsai.co/api: the OpenAI-compatible chat completions proxy, the asynchronous request-logging endpoint, prompt and prompt-version management, threads, traces, evaluators, users (customers), datasets, and experiments. All endpoints authenticate with a Bearer API key. (Keywords AI is rebranding to Respan; the keywordsai.co host and API remain active.)'
+  termsOfService: https://www.keywordsai.co/terms-of-service
+  contact:
+    name: Keywords AI Support
+    url: https://www.keywordsai.co
+    email: team@keywordsai.co
+  version: '1.0'
+servers:
+- url: https://api.keywordsai.co/api
+  description: Keywords AI production API base.
+security:
+- bearerAuth: []
+tags:
+- name: Evaluators
+  description: Output-scoring evaluators.
+paths:
+  /evaluators/:
+    post:
+      operationId: createEvaluator
+      tags:
+      - Evaluators
+      summary: Create an evaluator
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Evaluator'
+      responses:
+        '201':
+          description: Evaluator created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Evaluator'
+  /evaluators/list/:
+    post:
+      operationId: listEvaluators
+      tags:
+      - Evaluators
+      summary: List evaluators
+      description: Retrieve evaluators matching the supplied filters.
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ListFilter'
+      responses:
+        '200':
+          description: A paginated list of evaluators.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedList'
+  /evaluators/{evaluator_id}/run/:
+    parameters:
+    - name: evaluator_id
+      in: path
+      required: true
+      schema:
+        type: string
+    post:
+      operationId: runEvaluator
+      tags:
+      - Evaluators
+      summary: Run an evaluator
+      description: Execute an evaluator against supplied inputs/logs and return scores.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                input:
+                  type: string
+                output:
+                  type: string
+                metadata:
+                  type: object
+                  additionalProperties: true
+      responses:
+        '200':
+          description: Evaluation result with score(s).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EvaluationResult'
+components:
+  schemas:
+    EvaluationResult:
+      type: object
+      properties:
+        evaluator_id:
+          type: string
+        score:
+          type: number
+        passed:
+          type: boolean
+        reason:
+          type: string
+    ListFilter:
+      type: object
+      properties:
+        filters:
+          type: object
+          additionalProperties: true
+        page:
+          type: integer
+          default: 1
+        page_size:
+          type: integer
+          default: 50
+        sort_by:
+          type: string
+    Evaluator:
+      type: object
+      required:
+      - name
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+          description: Evaluator type (e.g. llm, code, human).
+        description:
+          type: string
+        definition:
+          type: object
+          additionalProperties: true
+    PaginatedList:
+      type: object
+      properties:
+        count:
+          type: integer
+        next:
+          type: string
+          nullable: true
+        previous:
+          type: string
+          nullable: true
+        results:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Keywords AI API key supplied as the Authorization Bearer header (Authorization: Bearer <KEYWORDSAI_API_KEY>).'

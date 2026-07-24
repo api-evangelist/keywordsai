@@ -1,0 +1,142 @@
+openapi: 3.0.1
+info:
+  title: Keywords AI Datasets Traces API
+  description: 'Keywords AI is an LLM observability and gateway platform. This specification documents the publicly documented REST surface served from https://api.keywordsai.co/api: the OpenAI-compatible chat completions proxy, the asynchronous request-logging endpoint, prompt and prompt-version management, threads, traces, evaluators, users (customers), datasets, and experiments. All endpoints authenticate with a Bearer API key. (Keywords AI is rebranding to Respan; the keywordsai.co host and API remain active.)'
+  termsOfService: https://www.keywordsai.co/terms-of-service
+  contact:
+    name: Keywords AI Support
+    url: https://www.keywordsai.co
+    email: team@keywordsai.co
+  version: '1.0'
+servers:
+- url: https://api.keywordsai.co/api
+  description: Keywords AI production API base.
+security:
+- bearerAuth: []
+tags:
+- name: Traces
+  description: OpenTelemetry-aligned distributed traces.
+paths:
+  /traces/list/:
+    post:
+      operationId: listTraces
+      tags:
+      - Traces
+      summary: List traces
+      description: Retrieve traces (OpenTelemetry-aligned span trees) with filtering and pagination.
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ListFilter'
+      responses:
+        '200':
+          description: A paginated list of traces.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedList'
+  /traces/{trace_id}/:
+    parameters:
+    - name: trace_id
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      operationId: retrieveTrace
+      tags:
+      - Traces
+      summary: Retrieve a trace
+      responses:
+        '200':
+          description: A trace with its spans.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Trace'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteTrace
+      tags:
+      - Traces
+      summary: Delete a trace
+      responses:
+        '204':
+          description: Trace deleted.
+components:
+  schemas:
+    ListFilter:
+      type: object
+      properties:
+        filters:
+          type: object
+          additionalProperties: true
+        page:
+          type: integer
+          default: 1
+        page_size:
+          type: integer
+          default: 50
+        sort_by:
+          type: string
+    Trace:
+      type: object
+      properties:
+        trace_id:
+          type: string
+        name:
+          type: string
+        start_time:
+          type: string
+          format: date-time
+        end_time:
+          type: string
+          format: date-time
+        spans:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+            type:
+              type: string
+            code:
+              type: string
+    PaginatedList:
+      type: object
+      properties:
+        count:
+          type: integer
+        next:
+          type: string
+          nullable: true
+        previous:
+          type: string
+          nullable: true
+        results:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+  responses:
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Keywords AI API key supplied as the Authorization Bearer header (Authorization: Bearer <KEYWORDSAI_API_KEY>).'

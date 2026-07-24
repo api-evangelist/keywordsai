@@ -1,0 +1,282 @@
+openapi: 3.0.1
+info:
+  title: Keywords AI Datasets Prompts API
+  description: 'Keywords AI is an LLM observability and gateway platform. This specification documents the publicly documented REST surface served from https://api.keywordsai.co/api: the OpenAI-compatible chat completions proxy, the asynchronous request-logging endpoint, prompt and prompt-version management, threads, traces, evaluators, users (customers), datasets, and experiments. All endpoints authenticate with a Bearer API key. (Keywords AI is rebranding to Respan; the keywordsai.co host and API remain active.)'
+  termsOfService: https://www.keywordsai.co/terms-of-service
+  contact:
+    name: Keywords AI Support
+    url: https://www.keywordsai.co
+    email: team@keywordsai.co
+  version: '1.0'
+servers:
+- url: https://api.keywordsai.co/api
+  description: Keywords AI production API base.
+security:
+- bearerAuth: []
+tags:
+- name: Prompts
+  description: Prompt and prompt-version management.
+paths:
+  /prompts/:
+    post:
+      operationId: createPrompt
+      tags:
+      - Prompts
+      summary: Create a prompt
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PromptCreate'
+            example:
+              name: customer_support
+      responses:
+        '201':
+          description: Prompt created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Prompt'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    get:
+      operationId: listPrompts
+      tags:
+      - Prompts
+      summary: List prompts
+      responses:
+        '200':
+          description: A list of prompts.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Prompt'
+  /prompts/{prompt_id}/:
+    parameters:
+    - $ref: '#/components/parameters/PromptId'
+    get:
+      operationId: retrievePrompt
+      tags:
+      - Prompts
+      summary: Retrieve a prompt
+      responses:
+        '200':
+          description: A prompt.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Prompt'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: updatePrompt
+      tags:
+      - Prompts
+      summary: Update a prompt
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PromptCreate'
+      responses:
+        '200':
+          description: Prompt updated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Prompt'
+    delete:
+      operationId: deletePrompt
+      tags:
+      - Prompts
+      summary: Delete a prompt
+      responses:
+        '204':
+          description: Prompt deleted.
+  /prompts/{prompt_id}/versions/:
+    parameters:
+    - $ref: '#/components/parameters/PromptId'
+    post:
+      operationId: createPromptVersion
+      tags:
+      - Prompts
+      summary: Create a prompt version
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PromptVersion'
+            example:
+              model: gpt-4o
+              messages:
+              - role: system
+                content: You are a helpful {{role}} assistant.
+              temperature: 0.7
+      responses:
+        '201':
+          description: Prompt version created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PromptVersion'
+    get:
+      operationId: listPromptVersions
+      tags:
+      - Prompts
+      summary: List prompt versions
+      responses:
+        '200':
+          description: A list of prompt versions.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/PromptVersion'
+components:
+  responses:
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Prompt:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        slug:
+          type: string
+        description:
+          type: string
+        current_version:
+          type: integer
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+            type:
+              type: string
+            code:
+              type: string
+    PromptVersion:
+      type: object
+      required:
+      - model
+      - messages
+      properties:
+        model:
+          type: string
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/Message'
+        description:
+          type: string
+        temperature:
+          type: number
+        max_tokens:
+          type: integer
+        top_p:
+          type: number
+        frequency_penalty:
+          type: number
+        presence_penalty:
+          type: number
+        variables:
+          type: object
+          additionalProperties: true
+        fallback_models:
+          type: array
+          items:
+            type: string
+        load_balance_models:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+        tools:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+        response_format:
+          type: object
+          additionalProperties: true
+        deploy:
+          type: boolean
+    Message:
+      type: object
+      required:
+      - role
+      - content
+      properties:
+        role:
+          type: string
+          enum:
+          - system
+          - user
+          - assistant
+          - tool
+        content:
+          type: string
+        name:
+          type: string
+        tool_calls:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+    PromptCreate:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+  parameters:
+    PromptId:
+      name: prompt_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The prompt identifier (id or slug).
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Keywords AI API key supplied as the Authorization Bearer header (Authorization: Bearer <KEYWORDSAI_API_KEY>).'

@@ -1,0 +1,76 @@
+openapi: 3.0.1
+info:
+  title: Keywords AI Datasets API
+  description: 'Keywords AI is an LLM observability and gateway platform. This specification documents the publicly documented REST surface served from https://api.keywordsai.co/api: the OpenAI-compatible chat completions proxy, the asynchronous request-logging endpoint, prompt and prompt-version management, threads, traces, evaluators, users (customers), datasets, and experiments. All endpoints authenticate with a Bearer API key. (Keywords AI is rebranding to Respan; the keywordsai.co host and API remain active.)'
+  termsOfService: https://www.keywordsai.co/terms-of-service
+  contact:
+    name: Keywords AI Support
+    url: https://www.keywordsai.co
+    email: team@keywordsai.co
+  version: '1.0'
+servers:
+- url: https://api.keywordsai.co/api
+  description: Keywords AI production API base.
+security:
+- bearerAuth: []
+tags:
+- name: Datasets
+  description: Datasets and dataset logs.
+paths:
+  /datasets/:
+    post:
+      operationId: createDataset
+      tags:
+      - Datasets
+      summary: Create a dataset
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dataset'
+      responses:
+        '201':
+          description: Dataset created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dataset'
+    get:
+      operationId: listDatasets
+      tags:
+      - Datasets
+      summary: List datasets
+      responses:
+        '200':
+          description: A list of datasets.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Dataset'
+components:
+  schemas:
+    Dataset:
+      type: object
+      required:
+      - name
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Keywords AI API key supplied as the Authorization Bearer header (Authorization: Bearer <KEYWORDSAI_API_KEY>).'
