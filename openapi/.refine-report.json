@@ -1,0 +1,30 @@
+{
+  "provider": "keywordsai",
+  "sources": [
+    "keywordsai-datasets-api-openapi.yml",
+    "keywordsai-evaluators-api-openapi.yml",
+    "keywordsai-experiments-api-openapi.yml",
+    "keywordsai-gateway-api-openapi.yml",
+    "keywordsai-logging-api-openapi.yml",
+    "keywordsai-prompts-api-openapi.yml",
+    "keywordsai-threads-api-openapi.yml",
+    "keywordsai-traces-api-openapi.yml",
+    "keywordsai-users-api-openapi.yml"
+  ],
+  "outputs": [
+    "keywordsai-datasets-api-openapi.yml",
+    "keywordsai-evaluators-api-openapi.yml",
+    "keywordsai-experiments-api-openapi.yml",
+    "keywordsai-gateway-api-openapi.yml",
+    "keywordsai-logging-api-openapi.yml",
+    "keywordsai-prompts-api-openapi.yml",
+    "keywordsai-threads-api-openapi.yml",
+    "keywordsai-traces-api-openapi.yml",
+    "keywordsai-users-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
