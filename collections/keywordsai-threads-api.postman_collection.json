@@ -1,0 +1,142 @@
+{
+  "item": [
+    {
+      "id": "69749f41-47df-4b31-b1bf-606c94b84346",
+      "name": "Threads",
+      "description": {
+        "content": "Multi-turn conversation threads.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "269b5228-6cfb-4f80-9e35-cf0405eda1e4",
+          "name": "List threads",
+          "request": {
+            "name": "List threads",
+            "description": {
+              "content": "Retrieve conversation threads matching the supplied filters, with pagination.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "log_threads",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"filters\": {\n    \"key_0\": \"string\",\n    \"key_1\": 1971.7834001482015\n  },\n  \"page\": 1,\n  \"page_size\": 50,\n  \"sort_by\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "da31d917-6794-463e-87db-04a97eda2346",
+              "name": "A paginated list of threads.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "log_threads",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filters\": {\n    \"key_0\": true,\n    \"key_1\": 796,\n    \"key_2\": 2151.9316611926865,\n    \"key_3\": true,\n    \"key_4\": 1259.7901429133528\n  },\n  \"page\": 1,\n  \"page_size\": 50,\n  \"sort_by\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 2798,\n  \"next\": \"string\",\n  \"previous\": \"string\",\n  \"results\": [\n    {\n      \"key_0\": 6807.281280235115,\n      \"key_1\": 264,\n      \"key_2\": false\n    },\n    {\n      \"key_0\": 5639.773193287831,\n      \"key_1\": 3805.4267895464322,\n      \"key_2\": 6099\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.keywordsai.co/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "74d928eb-31f2-4232-bc4f-5b1e46a6ceb6",
+    "name": "Keywords AI Datasets Threads API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Keywords AI is an LLM observability and gateway platform. This specification documents the publicly documented REST surface served from https://api.keywordsai.co/api: the OpenAI-compatible chat completions proxy, the asynchronous request-logging endpoint, prompt and prompt-version management, threads, traces, evaluators, users (customers), datasets, and experiments. All endpoints authenticate with a Bearer API key. (Keywords AI is rebranding to Respan; the keywordsai.co host and API remain active.)\n\nContact Support:\n Name: Keywords AI Support\n Email: team@keywordsai.co",
+      "type": "text/plain"
+    }
+  }
+}

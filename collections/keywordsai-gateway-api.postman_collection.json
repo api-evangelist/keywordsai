@@ -1,0 +1,246 @@
+{
+  "item": [
+    {
+      "id": "3f5a5d8d-5280-455c-8f31-0889468396d9",
+      "name": "Gateway",
+      "description": {
+        "content": "OpenAI-compatible LLM proxy (chat completions).",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "08fd0196-bda1-4b38-ab83-de3df2164453",
+          "name": "Create a chat completion",
+          "request": {
+            "name": "Create a chat completion",
+            "description": {
+              "content": "OpenAI-compatible chat completions through the Keywords AI gateway. Routes to 250+ models behind a single endpoint, with optional streaming (Server-Sent Events when `stream` is true), tool calling, structured outputs, fallbacks, load balancing, caching, and automatic logging.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "chat",
+                "completions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"model\": \"<string>\",\n  \"messages\": [\n    {\n      \"role\": \"<string>\",\n      \"content\": \"<string>\",\n      \"name\": \"<string>\",\n      \"tool_calls\": [\n        {\n          \"key_0\": true\n        },\n        {\n          \"key_0\": false\n        }\n      ]\n    },\n    {\n      \"role\": \"<string>\",\n      \"content\": \"<string>\",\n      \"name\": \"<string>\",\n      \"tool_calls\": [\n        {\n          \"key_0\": 8963.257918862768,\n          \"key_1\": \"string\"\n        },\n        {\n          \"key_0\": 5180.76960710241\n        }\n      ]\n    }\n  ],\n  \"stream\": false,\n  \"temperature\": \"<number>\",\n  \"max_tokens\": \"<integer>\",\n  \"top_p\": \"<number>\",\n  \"frequency_penalty\": \"<number>\",\n  \"presence_penalty\": \"<number>\",\n  \"tools\": [\n    {\n      \"key_0\": true,\n      \"key_1\": 1580,\n      \"key_2\": 6158\n    },\n    {\n      \"key_0\": 482\n    }\n  ],\n  \"response_format\": {\n    \"key_0\": 7907.807132018516,\n    \"key_1\": 6846,\n    \"key_2\": \"string\",\n    \"key_3\": 302\n  },\n  \"customer_identifier\": \"<string>\",\n  \"fallback_models\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"metadata\": {\n    \"key_0\": 8463,\n    \"key_1\": 6579\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "53f29284-2442-42c0-9609-d03c639881bb",
+              "name": "A chat completion (or, when stream=true, an SSE stream of chunks).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "chat",
+                    "completions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"gpt-4o-mini\",\n  \"messages\": [\n    {\n      \"role\": \"user\",\n      \"content\": \"Reply with exactly ok.\"\n    }\n  ],\n  \"max_tokens\": 16,\n  \"temperature\": 0\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"object\": \"chat.completion\",\n  \"created\": 8221,\n  \"model\": \"string\",\n  \"choices\": [\n    {\n      \"index\": 3775,\n      \"message\": {\n        \"role\": \"<string>\",\n        \"content\": \"<string>\",\n        \"name\": \"<string>\",\n        \"tool_calls\": [\n          {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\"\n          },\n          {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\"\n          }\n        ]\n      },\n      \"finish_reason\": \"string\"\n    },\n    {\n      \"index\": 1399,\n      \"message\": {\n        \"role\": \"<string>\",\n        \"content\": \"<string>\",\n        \"name\": \"<string>\",\n        \"tool_calls\": [\n          {\n            \"key_0\": 4291.097898227731\n          },\n          {\n            \"key_0\": 7182.698947316635,\n            \"key_1\": \"string\"\n          }\n        ]\n      },\n      \"finish_reason\": \"string\"\n    }\n  ],\n  \"usage\": {\n    \"prompt_tokens\": 7943,\n    \"completion_tokens\": 4446,\n    \"total_tokens\": 6073\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b3db418a-24d4-464d-8eeb-e2ae85cabf02",
+              "name": "Missing or invalid API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "chat",
+                    "completions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"gpt-4o-mini\",\n  \"messages\": [\n    {\n      \"role\": \"user\",\n      \"content\": \"Reply with exactly ok.\"\n    }\n  ],\n  \"max_tokens\": 16,\n  \"temperature\": 0\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"type\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9de56a0a-9802-424b-b7e1-46468e40b680",
+              "name": "Too many requests.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "chat",
+                    "completions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"gpt-4o-mini\",\n  \"messages\": [\n    {\n      \"role\": \"user\",\n      \"content\": \"Reply with exactly ok.\"\n    }\n  ],\n  \"max_tokens\": 16,\n  \"temperature\": 0\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"type\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.keywordsai.co/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0e2ab7f2-0a08-457d-ab82-357cfdc04b40",
+    "name": "Keywords AI Datasets Gateway API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Keywords AI is an LLM observability and gateway platform. This specification documents the publicly documented REST surface served from https://api.keywordsai.co/api: the OpenAI-compatible chat completions proxy, the asynchronous request-logging endpoint, prompt and prompt-version management, threads, traces, evaluators, users (customers), datasets, and experiments. All endpoints authenticate with a Bearer API key. (Keywords AI is rebranding to Respan; the keywordsai.co host and API remain active.)\n\nContact Support:\n Name: Keywords AI Support\n Email: team@keywordsai.co",
+      "type": "text/plain"
+    }
+  }
+}

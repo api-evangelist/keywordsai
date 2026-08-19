@@ -1,0 +1,139 @@
+{
+  "item": [
+    {
+      "id": "f0fcb88b-2a9e-4c41-b820-acb71a159e97",
+      "name": "Experiments",
+      "description": {
+        "content": "Prompt / model experiments.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "404938aa-eda8-465d-b3b5-978a390f2e8b",
+          "name": "Create an experiment",
+          "request": {
+            "name": "Create an experiment",
+            "description": {},
+            "url": {
+              "path": [
+                "experiments",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"columns\": [\n    {\n      \"key_0\": 4708,\n      \"key_1\": false\n    },\n    {\n      \"key_0\": 9281,\n      \"key_1\": 7767.48123307507,\n      \"key_2\": true\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7ec16309-667c-4e1c-8c96-75d9e77bd295",
+              "name": "Experiment created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "experiments",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"columns\": [\n    {\n      \"key_0\": 8522.630203086115,\n      \"key_1\": 5888.0199209414695,\n      \"key_2\": false\n    },\n    {\n      \"key_0\": \"string\",\n      \"key_1\": 6147.935044809163\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"<string>\",\n  \"id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"columns\": [\n    {\n      \"key_0\": 8522.630203086115,\n      \"key_1\": 5888.0199209414695,\n      \"key_2\": false\n    },\n    {\n      \"key_0\": \"string\",\n      \"key_1\": 6147.935044809163\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.keywordsai.co/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "af6d0130-28de-4171-9594-6026aedcaa53",
+    "name": "Keywords AI Datasets Experiments API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Keywords AI is an LLM observability and gateway platform. This specification documents the publicly documented REST surface served from https://api.keywordsai.co/api: the OpenAI-compatible chat completions proxy, the asynchronous request-logging endpoint, prompt and prompt-version management, threads, traces, evaluators, users (customers), datasets, and experiments. All endpoints authenticate with a Bearer API key. (Keywords AI is rebranding to Respan; the keywordsai.co host and API remain active.)\n\nContact Support:\n Name: Keywords AI Support\n Email: team@keywordsai.co",
+      "type": "text/plain"
+    }
+  }
+}

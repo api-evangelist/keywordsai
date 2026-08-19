@@ -1,0 +1,832 @@
+{
+  "item": [
+    {
+      "id": "58db1972-4c56-4020-aee6-e973e1dfcc0a",
+      "name": "Prompts",
+      "description": {
+        "content": "Prompt and prompt-version management.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "099e2a19-26a4-4b74-a9e8-ce2c26254c8d",
+          "name": "Create a prompt",
+          "request": {
+            "name": "Create a prompt",
+            "description": {},
+            "url": {
+              "path": [
+                "prompts",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "28847801-8ff1-4bf7-862a-fd282f2c8279",
+              "name": "Prompt created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "prompts",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"customer_support\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"slug\": \"string\",\n  \"description\": \"string\",\n  \"current_version\": 2486,\n  \"created_at\": \"1995-08-07T22:13:33.337Z\",\n  \"updated_at\": \"2002-01-11T00:07:40.191Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a75b613c-e8ff-495f-94f8-2f2cf24176cd",
+              "name": "Missing or invalid API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "prompts",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"customer_support\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"type\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f166d1ad-96da-421a-84cc-388f8ce690ca",
+          "name": "List prompts",
+          "request": {
+            "name": "List prompts",
+            "description": {},
+            "url": {
+              "path": [
+                "prompts",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "221e7aa6-381c-42d4-b1c6-fa14eed8c6d2",
+              "name": "A list of prompts.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "prompts",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"slug\": \"string\",\n      \"description\": \"string\",\n      \"current_version\": 8635,\n      \"created_at\": \"2006-12-09T03:48:53.414Z\",\n      \"updated_at\": \"2003-02-13T04:03:21.337Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"slug\": \"string\",\n      \"description\": \"string\",\n      \"current_version\": 6001,\n      \"created_at\": \"1985-10-11T18:13:23.416Z\",\n      \"updated_at\": \"2020-01-21T21:38:54.823Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6f96a51b-a75d-467c-9d50-41211776c4e7",
+          "name": "Retrieve a prompt",
+          "request": {
+            "name": "Retrieve a prompt",
+            "description": {},
+            "url": {
+              "path": [
+                "prompts",
+                ":prompt_id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "prompt_id",
+                  "description": "(Required) The prompt identifier (id or slug)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "398a465a-e141-4f03-bd44-6e570ea0cba4",
+              "name": "A prompt.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "prompts",
+                    ":prompt_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "prompt_id",
+                      "description": "(Required) The prompt identifier (id or slug)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"slug\": \"string\",\n  \"description\": \"string\",\n  \"current_version\": 2486,\n  \"created_at\": \"1995-08-07T22:13:33.337Z\",\n  \"updated_at\": \"2002-01-11T00:07:40.191Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e9fe86cf-0fc3-4849-ba30-e8c94cbff9db",
+              "name": "Resource not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "prompts",
+                    ":prompt_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "prompt_id",
+                      "description": "(Required) The prompt identifier (id or slug)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"type\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0e5a6be9-1a9f-4d6a-8457-7980b9d9b7f0",
+          "name": "Update a prompt",
+          "request": {
+            "name": "Update a prompt",
+            "description": {},
+            "url": {
+              "path": [
+                "prompts",
+                ":prompt_id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "prompt_id",
+                  "description": "(Required) The prompt identifier (id or slug)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "efdddba1-a492-443b-9a8b-fd58540faff4",
+              "name": "Prompt updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "prompts",
+                    ":prompt_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "prompt_id",
+                      "description": "(Required) The prompt identifier (id or slug)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"slug\": \"string\",\n  \"description\": \"string\",\n  \"current_version\": 2486,\n  \"created_at\": \"1995-08-07T22:13:33.337Z\",\n  \"updated_at\": \"2002-01-11T00:07:40.191Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c692ef5b-3609-437c-a55d-ae86fdae37cd",
+          "name": "Delete a prompt",
+          "request": {
+            "name": "Delete a prompt",
+            "description": {},
+            "url": {
+              "path": [
+                "prompts",
+                ":prompt_id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "prompt_id",
+                  "description": "(Required) The prompt identifier (id or slug)."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3318c100-e2f9-4c96-9c45-880fdd7ee1e1",
+              "name": "Prompt deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "prompts",
+                    ":prompt_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "prompt_id",
+                      "description": "(Required) The prompt identifier (id or slug)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "60147ef5-230e-49d6-83d3-07b276cacfa0",
+          "name": "Create a prompt version",
+          "request": {
+            "name": "Create a prompt version",
+            "description": {},
+            "url": {
+              "path": [
+                "prompts",
+                ":prompt_id",
+                "versions",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "prompt_id",
+                  "description": "(Required) The prompt identifier (id or slug)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"model\": \"<string>\",\n  \"messages\": [\n    {\n      \"role\": \"<string>\",\n      \"content\": \"<string>\",\n      \"name\": \"<string>\",\n      \"tool_calls\": [\n        {\n          \"key_0\": true\n        },\n        {\n          \"key_0\": false,\n          \"key_1\": true\n        }\n      ]\n    },\n    {\n      \"role\": \"<string>\",\n      \"content\": \"<string>\",\n      \"name\": \"<string>\",\n      \"tool_calls\": [\n        {\n          \"key_0\": \"string\"\n        },\n        {\n          \"key_0\": \"string\",\n          \"key_1\": 4868.923782095453\n        }\n      ]\n    }\n  ],\n  \"description\": \"<string>\",\n  \"temperature\": \"<number>\",\n  \"max_tokens\": \"<integer>\",\n  \"top_p\": \"<number>\",\n  \"frequency_penalty\": \"<number>\",\n  \"presence_penalty\": \"<number>\",\n  \"variables\": {\n    \"key_0\": 3054.8238953047135,\n    \"key_1\": false\n  },\n  \"fallback_models\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"load_balance_models\": [\n    {\n      \"key_0\": 2647\n    },\n    {\n      \"key_0\": true,\n      \"key_1\": true\n    }\n  ],\n  \"tools\": [\n    {\n      \"key_0\": \"string\",\n      \"key_1\": 520.0154021001435,\n      \"key_2\": \"string\"\n    },\n    {\n      \"key_0\": 4564\n    }\n  ],\n  \"response_format\": {\n    \"key_0\": 6650.609783171741,\n    \"key_1\": \"string\",\n    \"key_2\": 6874,\n    \"key_3\": false\n  },\n  \"deploy\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "314416d6-4651-4f70-8707-797ecb553687",
+              "name": "Prompt version created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "prompts",
+                    ":prompt_id",
+                    "versions",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "prompt_id",
+                      "description": "(Required) The prompt identifier (id or slug)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"gpt-4o\",\n  \"messages\": [\n    {\n      \"role\": \"system\",\n      \"content\": \"You are a helpful {{role}} assistant.\"\n    }\n  ],\n  \"temperature\": 0.7\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"model\": \"<string>\",\n  \"messages\": [\n    {\n      \"role\": \"<string>\",\n      \"content\": \"<string>\",\n      \"name\": \"<string>\",\n      \"tool_calls\": [\n        {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        },\n        {\n          \"key_0\": true,\n          \"key_1\": false\n        }\n      ]\n    },\n    {\n      \"role\": \"<string>\",\n      \"content\": \"<string>\",\n      \"name\": \"<string>\",\n      \"tool_calls\": [\n        {\n          \"key_0\": \"string\",\n          \"key_1\": 3928.221866534105,\n          \"key_2\": \"string\",\n          \"key_3\": \"string\"\n        },\n        {\n          \"key_0\": \"string\",\n          \"key_1\": true\n        }\n      ]\n    }\n  ],\n  \"description\": \"<string>\",\n  \"temperature\": \"<number>\",\n  \"max_tokens\": \"<integer>\",\n  \"top_p\": \"<number>\",\n  \"frequency_penalty\": \"<number>\",\n  \"presence_penalty\": \"<number>\",\n  \"variables\": {\n    \"key_0\": 3166.878632935236,\n    \"key_1\": 1971\n  },\n  \"fallback_models\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"load_balance_models\": [\n    {\n      \"key_0\": \"string\"\n    },\n    {\n      \"key_0\": \"string\"\n    }\n  ],\n  \"tools\": [\n    {\n      \"key_0\": false,\n      \"key_1\": true\n    },\n    {\n      \"key_0\": false,\n      \"key_1\": 6912.517105163129,\n      \"key_2\": true,\n      \"key_3\": true,\n      \"key_4\": \"string\"\n    }\n  ],\n  \"response_format\": {\n    \"key_0\": 609,\n    \"key_1\": 4383\n  },\n  \"deploy\": \"<boolean>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "99e5828b-2534-42f1-bec9-96db1f7b590d",
+          "name": "List prompt versions",
+          "request": {
+            "name": "List prompt versions",
+            "description": {},
+            "url": {
+              "path": [
+                "prompts",
+                ":prompt_id",
+                "versions",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "prompt_id",
+                  "description": "(Required) The prompt identifier (id or slug)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dab5fc31-d338-4826-83b7-45df7dcbcd9b",
+              "name": "A list of prompt versions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "prompts",
+                    ":prompt_id",
+                    "versions",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "prompt_id",
+                      "description": "(Required) The prompt identifier (id or slug)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"model\": \"<string>\",\n      \"messages\": [\n        {\n          \"role\": \"<string>\",\n          \"content\": \"<string>\",\n          \"name\": \"<string>\",\n          \"tool_calls\": [\n            {\n              \"key_0\": \"string\",\n              \"key_1\": 5431.214840401859,\n              \"key_2\": true\n            },\n            {\n              \"key_0\": 5120,\n              \"key_1\": \"string\"\n            }\n          ]\n        },\n        {\n          \"role\": \"<string>\",\n          \"content\": \"<string>\",\n          \"name\": \"<string>\",\n          \"tool_calls\": [\n            {\n              \"key_0\": 4719,\n              \"key_1\": false\n            },\n            {\n              \"key_0\": 9469.449441090805,\n              \"key_1\": \"string\",\n              \"key_2\": \"string\",\n              \"key_3\": false\n            }\n          ]\n        }\n      ],\n      \"description\": \"<string>\",\n      \"temperature\": \"<number>\",\n      \"max_tokens\": \"<integer>\",\n      \"top_p\": \"<number>\",\n      \"frequency_penalty\": \"<number>\",\n      \"presence_penalty\": \"<number>\",\n      \"variables\": {\n        \"key_0\": 4368,\n        \"key_1\": 8730.33303085403\n      },\n      \"fallback_models\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"load_balance_models\": [\n        {\n          \"key_0\": \"string\"\n        },\n        {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\",\n          \"key_2\": true,\n          \"key_3\": false\n        }\n      ],\n      \"tools\": [\n        {\n          \"key_0\": false,\n          \"key_1\": \"string\",\n          \"key_2\": \"string\"\n        },\n        {\n          \"key_0\": true,\n          \"key_1\": \"string\",\n          \"key_2\": \"string\",\n          \"key_3\": \"string\"\n        }\n      ],\n      \"response_format\": {\n        \"key_0\": 753.8364543192955\n      },\n      \"deploy\": \"<boolean>\"\n    },\n    {\n      \"model\": \"<string>\",\n      \"messages\": [\n        {\n          \"role\": \"<string>\",\n          \"content\": \"<string>\",\n          \"name\": \"<string>\",\n          \"tool_calls\": [\n            {\n              \"key_0\": 6176,\n              \"key_1\": \"string\"\n            },\n            {\n              \"key_0\": \"string\",\n              \"key_1\": true\n            }\n          ]\n        },\n        {\n          \"role\": \"<string>\",\n          \"content\": \"<string>\",\n          \"name\": \"<string>\",\n          \"tool_calls\": [\n            {\n              \"key_0\": 3231.599882200471,\n              \"key_1\": 1189\n            },\n            {\n              \"key_0\": \"string\",\n              \"key_1\": false\n            }\n          ]\n        }\n      ],\n      \"description\": \"<string>\",\n      \"temperature\": \"<number>\",\n      \"max_tokens\": \"<integer>\",\n      \"top_p\": \"<number>\",\n      \"frequency_penalty\": \"<number>\",\n      \"presence_penalty\": \"<number>\",\n      \"variables\": {\n        \"key_0\": \"string\"\n      },\n      \"fallback_models\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"load_balance_models\": [\n        {\n          \"key_0\": 6788\n        },\n        {\n          \"key_0\": 9429\n        }\n      ],\n      \"tools\": [\n        {\n          \"key_0\": 5370.728704748151,\n          \"key_1\": false\n        },\n        {\n          \"key_0\": 7897,\n          \"key_1\": 4947.790651681482\n        }\n      ],\n      \"response_format\": {\n        \"key_0\": false\n      },\n      \"deploy\": \"<boolean>\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.keywordsai.co/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "496d3560-a093-4ae8-8e8c-1985a8ec630f",
+    "name": "Keywords AI Datasets Prompts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Keywords AI is an LLM observability and gateway platform. This specification documents the publicly documented REST surface served from https://api.keywordsai.co/api: the OpenAI-compatible chat completions proxy, the asynchronous request-logging endpoint, prompt and prompt-version management, threads, traces, evaluators, users (customers), datasets, and experiments. All endpoints authenticate with a Bearer API key. (Keywords AI is rebranding to Respan; the keywordsai.co host and API remain active.)\n\nContact Support:\n Name: Keywords AI Support\n Email: team@keywordsai.co",
+      "type": "text/plain"
+    }
+  }
+}

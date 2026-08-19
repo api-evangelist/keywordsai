@@ -1,0 +1,377 @@
+{
+  "item": [
+    {
+      "id": "648c856f-973a-4530-869c-69d0867df6af",
+      "name": "Traces",
+      "description": {
+        "content": "OpenTelemetry-aligned distributed traces.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4a137f0d-5cc8-44db-9d3c-aa4cad2ea002",
+          "name": "List traces",
+          "request": {
+            "name": "List traces",
+            "description": {
+              "content": "Retrieve traces (OpenTelemetry-aligned span trees) with filtering and pagination.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "traces",
+                "list",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"filters\": {\n    \"key_0\": true\n  },\n  \"page\": 1,\n  \"page_size\": 50,\n  \"sort_by\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "52a6ddc9-ac53-4320-b1c4-75944c231483",
+              "name": "A paginated list of traces.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "traces",
+                    "list",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filters\": {\n    \"key_0\": 537,\n    \"key_1\": false\n  },\n  \"page\": 1,\n  \"page_size\": 50,\n  \"sort_by\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 1619,\n  \"next\": \"string\",\n  \"previous\": \"string\",\n  \"results\": [\n    {\n      \"key_0\": false,\n      \"key_1\": false\n    },\n    {\n      \"key_0\": 1207.4224812247858,\n      \"key_1\": 8838,\n      \"key_2\": 6703.506712630248\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "66e94917-5803-475f-a674-43254dc84a12",
+          "name": "Retrieve a trace",
+          "request": {
+            "name": "Retrieve a trace",
+            "description": {},
+            "url": {
+              "path": [
+                "traces",
+                ":trace_id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "trace_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "55339719-51a9-4694-ae81-69e7a02c76b7",
+              "name": "A trace with its spans.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "traces",
+                    ":trace_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "trace_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"trace_id\": \"string\",\n  \"name\": \"string\",\n  \"start_time\": \"1952-06-11T17:23:23.620Z\",\n  \"end_time\": \"1953-10-23T16:16:46.698Z\",\n  \"spans\": [\n    {\n      \"key_0\": \"string\"\n    },\n    {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8ac06b01-08e1-41c8-982d-c43d5686664d",
+              "name": "Resource not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "traces",
+                    ":trace_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "trace_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"type\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2f6f82b1-0606-427f-89e1-9e7328fda8b3",
+          "name": "Delete a trace",
+          "request": {
+            "name": "Delete a trace",
+            "description": {},
+            "url": {
+              "path": [
+                "traces",
+                ":trace_id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "trace_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f2ee0738-d228-4d93-8bb0-dea35fab49c8",
+              "name": "Trace deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "traces",
+                    ":trace_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "trace_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.keywordsai.co/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "4bb674c2-49ae-4e9c-b0cb-60506ccc1aa5",
+    "name": "Keywords AI Datasets Traces API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Keywords AI is an LLM observability and gateway platform. This specification documents the publicly documented REST surface served from https://api.keywordsai.co/api: the OpenAI-compatible chat completions proxy, the asynchronous request-logging endpoint, prompt and prompt-version management, threads, traces, evaluators, users (customers), datasets, and experiments. All endpoints authenticate with a Bearer API key. (Keywords AI is rebranding to Respan; the keywordsai.co host and API remain active.)\n\nContact Support:\n Name: Keywords AI Support\n Email: team@keywordsai.co",
+      "type": "text/plain"
+    }
+  }
+}

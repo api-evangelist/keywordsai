@@ -1,0 +1,56 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Keywords AI Datasets Users API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List users (customers)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.keywordsai.co/api/users/list/",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "environment",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieve end-user (customer) records in your organization with analytics and budget fields. Supports filtering by customer_identifier, name, email, number_of_requests, total_tokens, total_cost, and active_days."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

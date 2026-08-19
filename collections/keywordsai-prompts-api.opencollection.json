@@ -1,0 +1,153 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Keywords AI Datasets Prompts API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Prompts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List prompts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.keywordsai.co/api/prompts/"
+          },
+          "docs": "List prompts"
+        },
+        {
+          "info": {
+            "name": "Create a prompt",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.keywordsai.co/api/prompts/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a prompt"
+        },
+        {
+          "info": {
+            "name": "Retrieve a prompt",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.keywordsai.co/api/prompts/:prompt_id/",
+            "params": [
+              {
+                "name": "prompt_id",
+                "value": "",
+                "type": "path",
+                "description": "The prompt identifier (id or slug)."
+              }
+            ]
+          },
+          "docs": "Retrieve a prompt"
+        },
+        {
+          "info": {
+            "name": "Update a prompt",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.keywordsai.co/api/prompts/:prompt_id/",
+            "params": [
+              {
+                "name": "prompt_id",
+                "value": "",
+                "type": "path",
+                "description": "The prompt identifier (id or slug)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a prompt"
+        },
+        {
+          "info": {
+            "name": "Delete a prompt",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.keywordsai.co/api/prompts/:prompt_id/",
+            "params": [
+              {
+                "name": "prompt_id",
+                "value": "",
+                "type": "path",
+                "description": "The prompt identifier (id or slug)."
+              }
+            ]
+          },
+          "docs": "Delete a prompt"
+        },
+        {
+          "info": {
+            "name": "List prompt versions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.keywordsai.co/api/prompts/:prompt_id/versions/",
+            "params": [
+              {
+                "name": "prompt_id",
+                "value": "",
+                "type": "path",
+                "description": "The prompt identifier (id or slug)."
+              }
+            ]
+          },
+          "docs": "List prompt versions"
+        },
+        {
+          "info": {
+            "name": "Create a prompt version",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.keywordsai.co/api/prompts/:prompt_id/versions/",
+            "params": [
+              {
+                "name": "prompt_id",
+                "value": "",
+                "type": "path",
+                "description": "The prompt identifier (id or slug)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a prompt version"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

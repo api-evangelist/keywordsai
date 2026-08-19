@@ -1,0 +1,194 @@
+{
+  "item": [
+    {
+      "id": "f0e968e0-7ffe-43a9-a75f-76e414d06cb6",
+      "name": "Logging",
+      "description": {
+        "content": "Asynchronous request / span logging.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "caa90ace-1400-4d09-8e74-8e5c0fedcde6",
+          "name": "Create a request log (span)",
+          "request": {
+            "name": "Create a request log (span)",
+            "description": {
+              "content": "Asynchronously ingest telemetry for an LLM call that was not routed through the gateway proxy. The legacy alias `/request-logs/create/` remains supported.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "request-logs",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"model\": \"<string>\",\n  \"prompt_messages\": [\n    {\n      \"role\": \"<string>\",\n      \"content\": \"<string>\",\n      \"name\": \"<string>\",\n      \"tool_calls\": [\n        {\n          \"key_0\": 673.3002478333594,\n          \"key_1\": \"string\"\n        },\n        {\n          \"key_0\": 5850,\n          \"key_1\": 1776\n        }\n      ]\n    },\n    {\n      \"role\": \"<string>\",\n      \"content\": \"<string>\",\n      \"name\": \"<string>\",\n      \"tool_calls\": [\n        {\n          \"key_0\": false,\n          \"key_1\": 2774\n        },\n        {\n          \"key_0\": 1480,\n          \"key_1\": 7110\n        }\n      ]\n    }\n  ],\n  \"completion_message\": {\n    \"role\": \"<string>\",\n    \"content\": \"<string>\",\n    \"name\": \"<string>\",\n    \"tool_calls\": [\n      {\n        \"key_0\": 143,\n        \"key_1\": 5564\n      },\n      {\n        \"key_0\": true,\n        \"key_1\": \"string\"\n      }\n    ]\n  },\n  \"input\": {},\n  \"output\": {},\n  \"prompt_tokens\": \"<integer>\",\n  \"completion_tokens\": \"<integer>\",\n  \"cost\": \"<number>\",\n  \"latency\": \"<number>\",\n  \"customer_identifier\": \"<string>\",\n  \"status\": \"<string>\",\n  \"timestamp\": \"<dateTime>\",\n  \"metadata\": {\n    \"key_0\": \"string\",\n    \"key_1\": 4651.618150098393,\n    \"key_2\": 4909.447049092613\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "08335d22-4f40-4d89-a44c-d65c3a1ac64e",
+              "name": "Log accepted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "request-logs",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"gpt-4o\",\n  \"prompt_messages\": [\n    {\n      \"role\": \"user\",\n      \"content\": \"Hello\"\n    }\n  ],\n  \"completion_message\": {\n    \"role\": \"assistant\",\n    \"content\": \"Hi there!\"\n  },\n  \"prompt_tokens\": 8,\n  \"completion_tokens\": 4,\n  \"cost\": 0.00012,\n  \"latency\": 0.42,\n  \"customer_identifier\": \"user_123\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "59ec3cb4-af01-49c5-9b5e-8e6ed84b488b",
+              "name": "Missing or invalid API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "request-logs",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"gpt-4o\",\n  \"prompt_messages\": [\n    {\n      \"role\": \"user\",\n      \"content\": \"Hello\"\n    }\n  ],\n  \"completion_message\": {\n    \"role\": \"assistant\",\n    \"content\": \"Hi there!\"\n  },\n  \"prompt_tokens\": 8,\n  \"completion_tokens\": 4,\n  \"cost\": 0.00012,\n  \"latency\": 0.42,\n  \"customer_identifier\": \"user_123\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"type\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.keywordsai.co/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "cd303f57-18c5-4fd6-bc43-4b66787df4a7",
+    "name": "Keywords AI Datasets Logging API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Keywords AI is an LLM observability and gateway platform. This specification documents the publicly documented REST surface served from https://api.keywordsai.co/api: the OpenAI-compatible chat completions proxy, the asynchronous request-logging endpoint, prompt and prompt-version management, threads, traces, evaluators, users (customers), datasets, and experiments. All endpoints authenticate with a Bearer API key. (Keywords AI is rebranding to Respan; the keywordsai.co host and API remain active.)\n\nContact Support:\n Name: Keywords AI Support\n Email: team@keywordsai.co",
+      "type": "text/plain"
+    }
+  }
+}

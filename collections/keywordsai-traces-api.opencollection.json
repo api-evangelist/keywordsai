@@ -1,0 +1,75 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Keywords AI Datasets Traces API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Traces",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List traces",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.keywordsai.co/api/traces/list/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieve traces (OpenTelemetry-aligned span trees) with filtering and pagination."
+        },
+        {
+          "info": {
+            "name": "Retrieve a trace",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.keywordsai.co/api/traces/:trace_id/",
+            "params": [
+              {
+                "name": "trace_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a trace"
+        },
+        {
+          "info": {
+            "name": "Delete a trace",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.keywordsai.co/api/traces/:trace_id/",
+            "params": [
+              {
+                "name": "trace_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a trace"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
