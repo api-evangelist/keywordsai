@@ -22,6 +22,12 @@ accessModel:
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/keywordsai.png
 tags:
+- Artificial Intelligence
+- LLM
+- Observability
+- Gateway
+- Monitoring
+tags_raw:
 - AI
 - LLM
 - Observability
@@ -261,6 +267,8 @@ apis:
   humanURL: https://docs.keywordsai.co/api-endpoints/integration/chat-completions
   baseURL: https://api.keywordsai.co/api
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
