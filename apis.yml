@@ -7,6 +7,18 @@ description: Keywords AI is an LLM observability and gateway platform. It expose
   request logging, prompt management, threads, evaluations, and traces - all under a
   single Bearer-authenticated API at https://api.keywordsai.co/api. (The company is
   rebranding to Respan; the keywordsai.co host and API remain active.)
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
