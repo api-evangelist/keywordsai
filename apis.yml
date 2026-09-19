@@ -39,7 +39,7 @@ tags:
 - Artificial Intelligence
 - LLM
 - Observability
-- Gateway
+- Gateways
 - Monitoring
 tags_raw:
 - AI
@@ -141,6 +141,8 @@ apis:
   humanURL: https://docs.keywordsai.co/api-endpoints/integration/chat-completions
   baseURL: https://api.keywordsai.co/api
   tags:
+  - Gateways
+  tags_raw:
   - Gateway
   properties:
   - type: OpenAPI
