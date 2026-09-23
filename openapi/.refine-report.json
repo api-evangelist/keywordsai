@@ -1,15 +1,7 @@
 {
   "provider": "keywordsai",
   "sources": [
-    "keywordsai-datasets-api-openapi.yml",
-    "keywordsai-evaluators-api-openapi.yml",
-    "keywordsai-experiments-api-openapi.yml",
-    "keywordsai-gateway-api-openapi.yml",
-    "keywordsai-logging-api-openapi.yml",
-    "keywordsai-prompts-api-openapi.yml",
-    "keywordsai-threads-api-openapi.yml",
-    "keywordsai-traces-api-openapi.yml",
-    "keywordsai-users-api-openapi.yml"
+    "_original/keywordsai-openapi.yml"
   ],
   "outputs": [
     "keywordsai-datasets-api-openapi.yml",
@@ -25,6 +17,20 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "keywordsai-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "keywordsai-datasets-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "keywordsai-evaluators-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "keywordsai-experiments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "keywordsai-gateway-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "keywordsai-logging-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "keywordsai-prompts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "keywordsai-threads-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "keywordsai-traces-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "keywordsai-users-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

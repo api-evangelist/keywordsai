@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Keywords AI Datasets Experiments API
-  description: 'Keywords AI is an LLM observability and gateway platform. This specification documents the publicly documented REST surface served from https://api.keywordsai.co/api: the OpenAI-compatible chat completions proxy, the asynchronous request-logging endpoint, prompt and prompt-version management, threads, traces, evaluators, users (customers), datasets, and experiments. All endpoints authenticate with a Bearer API key. (Keywords AI is rebranding to Respan; the keywordsai.co host and API remain active.)'
+  title: Keywords AI Experiments API
+  description: Keywords AI is an LLM observability and gateway platform.
   termsOfService: https://www.keywordsai.co/terms-of-service
   contact:
     name: Keywords AI Support

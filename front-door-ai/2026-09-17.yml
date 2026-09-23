@@ -1,0 +1,30 @@
+# Front Door AI Index — keywordsai — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: keywordsai
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: www.keywordsai.co
+  final_host: www.respan.ai
+  ownership: own
+  owner: keywordsai
+  shares_host_with: null
+  inherited_from: null
+  verdict: scored
+  score: 26
+  host_score: 26
+  density: 24.21
+  words: 1074
+  tiers:
+    agentic: 4
+    core: 21
+    model: 1
+  ambiguous: 9
+  top_terms:
+    AI: 12
+    LLMs: 9
+    agent: 9
+    prompts: 3
+    AI agent: 1
+    Claude: 1
