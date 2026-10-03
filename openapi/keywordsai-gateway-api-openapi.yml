@@ -54,6 +54,40 @@ paths:
           $ref: '#/components/responses/RateLimited'
 components:
   schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+            type:
+              type: string
+            code:
+              type: string
+    Message:
+      type: object
+      required:
+      - role
+      - content
+      properties:
+        role:
+          type: string
+          enum:
+          - system
+          - user
+          - assistant
+          - tool
+        content:
+          type: string
+        name:
+          type: string
+        tool_calls:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
     ChatCompletionResponse:
       type: object
       properties:
@@ -86,18 +120,6 @@ components:
               type: integer
             total_tokens:
               type: integer
-    Error:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-            type:
-              type: string
-            code:
-              type: string
     ChatCompletionRequest:
       type: object
       required:
@@ -145,28 +167,6 @@ components:
         metadata:
           type: object
           additionalProperties: true
-    Message:
-      type: object
-      required:
-      - role
-      - content
-      properties:
-        role:
-          type: string
-          enum:
-          - system
-          - user
-          - assistant
-          - tool
-        content:
-          type: string
-        name:
-          type: string
-        tool_calls:
-          type: array
-          items:
-            type: object
-            additionalProperties: true
   responses:
     Unauthorized:
       description: Missing or invalid API key.

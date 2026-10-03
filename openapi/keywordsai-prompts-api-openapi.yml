@@ -146,37 +146,6 @@ paths:
                       $ref: '#/components/schemas/PromptVersion'
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-            type:
-              type: string
-            code:
-              type: string
-    Prompt:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        slug:
-          type: string
-        description:
-          type: string
-        current_version:
-          type: integer
-        created_at:
-          type: string
-          format: date-time
-        updated_at:
-          type: string
-          format: date-time
     PromptVersion:
       type: object
       required:
@@ -223,6 +192,18 @@ components:
           additionalProperties: true
         deploy:
           type: boolean
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+            type:
+              type: string
+            code:
+              type: string
     Message:
       type: object
       required:
@@ -254,6 +235,25 @@ components:
           type: string
         description:
           type: string
+    Prompt:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        slug:
+          type: string
+        description:
+          type: string
+        current_version:
+          type: integer
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
   parameters:
     PromptId:
       name: prompt_id
@@ -263,14 +263,14 @@ components:
         type: string
       description: The prompt identifier (id or slug).
   responses:
-    NotFound:
-      description: Resource not found.
+    Unauthorized:
+      description: Missing or invalid API key.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Missing or invalid API key.
+    NotFound:
+      description: Resource not found.
       content:
         application/json:
           schema:

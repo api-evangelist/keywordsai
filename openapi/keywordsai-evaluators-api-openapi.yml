@@ -92,6 +92,23 @@ paths:
                 $ref: '#/components/schemas/EvaluationResult'
 components:
   schemas:
+    Evaluator:
+      type: object
+      required:
+      - name
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+          description: Evaluator type (e.g. llm, code, human).
+        description:
+          type: string
+        definition:
+          type: object
+          additionalProperties: true
     ListFilter:
       type: object
       properties:
@@ -124,23 +141,6 @@ components:
           items:
             type: object
             additionalProperties: true
-    Evaluator:
-      type: object
-      required:
-      - name
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        type:
-          type: string
-          description: Evaluator type (e.g. llm, code, human).
-        description:
-          type: string
-        definition:
-          type: object
-          additionalProperties: true
     EvaluationResult:
       type: object
       properties:
