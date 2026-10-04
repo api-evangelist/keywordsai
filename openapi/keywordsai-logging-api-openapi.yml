@@ -54,18 +54,11 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    Error:
+    SimpleMessage:
       type: object
       properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-            type:
-              type: string
-            code:
-              type: string
+        message:
+          type: string
     Message:
       type: object
       required:
@@ -88,6 +81,18 @@ components:
           items:
             type: object
             additionalProperties: true
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+            type:
+              type: string
+            code:
+              type: string
     RequestLog:
       type: object
       required:
@@ -128,11 +133,6 @@ components:
         metadata:
           type: object
           additionalProperties: true
-    SimpleMessage:
-      type: object
-      properties:
-        message:
-          type: string
   responses:
     Unauthorized:
       description: Missing or invalid API key.

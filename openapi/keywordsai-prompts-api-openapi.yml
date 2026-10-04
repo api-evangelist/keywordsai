@@ -145,7 +145,50 @@ paths:
                     items:
                       $ref: '#/components/schemas/PromptVersion'
 components:
+  responses:
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    PromptId:
+      name: prompt_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The prompt identifier (id or slug).
   schemas:
+    Message:
+      type: object
+      required:
+      - role
+      - content
+      properties:
+        role:
+          type: string
+          enum:
+          - system
+          - user
+          - assistant
+          - tool
+        content:
+          type: string
+        name:
+          type: string
+        tool_calls:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
     PromptVersion:
       type: object
       required:
@@ -192,6 +235,15 @@ components:
           additionalProperties: true
         deploy:
           type: boolean
+    PromptCreate:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        description:
+          type: string
     Error:
       type: object
       properties:
@@ -204,37 +256,6 @@ components:
               type: string
             code:
               type: string
-    Message:
-      type: object
-      required:
-      - role
-      - content
-      properties:
-        role:
-          type: string
-          enum:
-          - system
-          - user
-          - assistant
-          - tool
-        content:
-          type: string
-        name:
-          type: string
-        tool_calls:
-          type: array
-          items:
-            type: object
-            additionalProperties: true
-    PromptCreate:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-        description:
-          type: string
     Prompt:
       type: object
       properties:
@@ -254,27 +275,6 @@ components:
         updated_at:
           type: string
           format: date-time
-  parameters:
-    PromptId:
-      name: prompt_id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The prompt identifier (id or slug).
-  responses:
-    Unauthorized:
-      description: Missing or invalid API key.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Resource not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     bearerAuth:
       type: http

@@ -67,33 +67,14 @@ paths:
         '204':
           description: Trace deleted.
 components:
+  responses:
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    Error:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-            type:
-              type: string
-            code:
-              type: string
-    ListFilter:
-      type: object
-      properties:
-        filters:
-          type: object
-          additionalProperties: true
-        page:
-          type: integer
-          default: 1
-        page_size:
-          type: integer
-          default: 50
-        sort_by:
-          type: string
     Trace:
       type: object
       properties:
@@ -112,6 +93,20 @@ components:
           items:
             type: object
             additionalProperties: true
+    ListFilter:
+      type: object
+      properties:
+        filters:
+          type: object
+          additionalProperties: true
+        page:
+          type: integer
+          default: 1
+        page_size:
+          type: integer
+          default: 50
+        sort_by:
+          type: string
     PaginatedList:
       type: object
       properties:
@@ -130,13 +125,18 @@ components:
           items:
             type: object
             additionalProperties: true
-  responses:
-    NotFound:
-      description: Resource not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+            type:
+              type: string
+            code:
+              type: string
   securitySchemes:
     bearerAuth:
       type: http

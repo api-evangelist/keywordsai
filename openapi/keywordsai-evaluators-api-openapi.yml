@@ -92,6 +92,31 @@ paths:
                 $ref: '#/components/schemas/EvaluationResult'
 components:
   schemas:
+    ListFilter:
+      type: object
+      properties:
+        filters:
+          type: object
+          additionalProperties: true
+        page:
+          type: integer
+          default: 1
+        page_size:
+          type: integer
+          default: 50
+        sort_by:
+          type: string
+    EvaluationResult:
+      type: object
+      properties:
+        evaluator_id:
+          type: string
+        score:
+          type: number
+        passed:
+          type: boolean
+        reason:
+          type: string
     Evaluator:
       type: object
       required:
@@ -109,20 +134,6 @@ components:
         definition:
           type: object
           additionalProperties: true
-    ListFilter:
-      type: object
-      properties:
-        filters:
-          type: object
-          additionalProperties: true
-        page:
-          type: integer
-          default: 1
-        page_size:
-          type: integer
-          default: 50
-        sort_by:
-          type: string
     PaginatedList:
       type: object
       properties:
@@ -141,17 +152,6 @@ components:
           items:
             type: object
             additionalProperties: true
-    EvaluationResult:
-      type: object
-      properties:
-        evaluator_id:
-          type: string
-        score:
-          type: number
-        passed:
-          type: boolean
-        reason:
-          type: string
   securitySchemes:
     bearerAuth:
       type: http
