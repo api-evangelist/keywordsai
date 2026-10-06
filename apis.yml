@@ -53,7 +53,7 @@ tags_raw:
 - Monitoring
 - Real-Time
 created: '2026-06-20'
-modified: '2026-06-20'
+modified: '2026-10-06'
 specificationVersion: '0.23'
 apis:
 - aid: keywordsai:keywordsai-datasets-api
@@ -313,6 +313,8 @@ apis:
   - type: Documentation
     url: https://docs.keywordsai.co/api-endpoints/data-endpoints/list-traces
 common:
+- url: https://www.respan.ai/blog
+  type: Blog
 - type: CapabilityMap
   url: capabilities/keywordsai-capability-edges.yml
   name: Keywords AI Business Capability Map
