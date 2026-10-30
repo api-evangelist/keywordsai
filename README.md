@@ -1,4 +1,4 @@
-# Keywords AI (keywordsai)
+# Keywords AI
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,157 +66,159 @@
 
 Keywords AI is an LLM observability and gateway platform. It exposes an OpenAI-compatible proxy (chat completions across 250+ models) plus REST APIs for request logging, prompt management, threads, evaluations, and traces - all under a single Bearer-authenticated API at https://api.keywordsai.co/api. (The company is rebranding to Respan; the keywordsai.co host and API remain active.)
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/keywordsai/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/keywordsai/refs/heads/main/apis.yml)
+**Areas:** Artificial Intelligence · LLM · Observability · Gateways · Monitoring · Real-Time
 
-## Tags
+## Keywords AI on APIs.io
 
-- AI
-- LLM
-- Observability
-- Gateway
-- Monitoring
+Everything profiled for Keywords AI is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/keywordsai/](https://apis.io/providers/keywordsai/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (9)
 
-- **Created:** 2026-06-20
-- **Modified:** 2026-06-20
+- [Keywords AI Datasets API](https://apis.io/apis/keywordsai/keywordsai-datasets-api/) — Datasets and dataset logs.
+- [Keywords AI Evaluators API](https://apis.io/apis/keywordsai/keywordsai-evaluators-api/) — Output-scoring evaluators.
+- [Keywords AI Experiments API](https://apis.io/apis/keywordsai/keywordsai-experiments-api/) — Prompt / model experiments.
+- [Keywords AI Gateway API](https://apis.io/apis/keywordsai/keywordsai-gateway-api/) — OpenAI-compatible LLM proxy (chat completions).
+- [Keywords AI Logging API](https://apis.io/apis/keywordsai/keywordsai-logging-api/) — Asynchronous request / span logging.
+- [Keywords AI Prompts API](https://apis.io/apis/keywordsai/keywordsai-prompts-api/) — Prompt and prompt-version management.
+- [Keywords AI Threads API](https://apis.io/apis/keywordsai/keywordsai-threads-api/) — Multi-turn conversation threads.
+- [Keywords AI Traces API](https://apis.io/apis/keywordsai/keywordsai-traces-api/) — OpenTelemetry-aligned distributed traces.
+- [Keywords AI Users API](https://apis.io/apis/keywordsai/keywordsai-users-api/) — End-user (customer) analytics.
 
-## APIs
+### Published properties
 
-### Keywords AI LLM Proxy (Chat Completions)
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-OpenAI-compatible chat completions proxy that routes requests to 250+ LLMs through one unified endpoint, with streaming (SSE), tool calling, structured outputs, fallbacks, load balancing, caching, and automatic request logging.
+#### AsyncAPI (1)
 
-- **Human URL:** [https://docs.keywordsai.co/api-endpoints/integration/chat-completions](https://docs.keywordsai.co/api-endpoints/integration/chat-completions)
-- **Base URL:** `https://api.keywordsai.co/api`
+Event-driven and webhook contracts.
 
-#### Tags
+- [Keywords AI Chat Completions Streaming (HTTP + SSE)](https://apis.io/asyncapis/keywordsai/keywordsai-asyncapi/)
 
-- Chat
-- Completions
-- Gateway
-- LLM
+#### Event channels (1)
 
-#### Properties
+Individual events and webhooks the provider emits.
 
-- [Documentation](https://docs.keywordsai.co/api-endpoints/integration/chat-completions)
-- [API Reference](https://docs.keywordsai.co/api-endpoints/integration/chat-completions)
-- [OpenAPI](openapi/keywordsai-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [AsyncAPI](asyncapi/keywordsai-asyncapi.yml) — [AsyncAPI Specification](https://www.asyncapi.com/docs/reference/specification/latest)
-- [Postman Collection](collections/keywordsai.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/keywordsai.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [/chat/completions](https://apis.io/channels/keywordsai/chat-completions/)
 
-### Keywords AI Logging API
+#### MCP servers (1)
 
-Asynchronous request-logging endpoint for ingesting LLM call telemetry (model, prompt/completion messages, tokens, cost, latency, customer identifier, metadata) when calls are not routed through the gateway proxy.
+Model Context Protocol servers that expose the API to agents.
 
-- **Human URL:** [https://docs.keywordsai.co/api-endpoints/async-endpoints/request-logging-endpoint](https://docs.keywordsai.co/api-endpoints/async-endpoints/request-logging-endpoint)
-- **Base URL:** `https://api.keywordsai.co/api`
+- [keywordsai](https://apis.io/servers/keywordsai/keywordsai/)
 
-#### Tags
+#### Agentic access (1)
 
-- Logging
-- Observability
-- Request Logs
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Properties
+- [Keywordsai Agentic Access](https://apis.io/agentic-access/keywordsai/keywordsai-agentic-access/)
 
-- [Documentation](https://docs.keywordsai.co/api-endpoints/async-endpoints/request-logging-endpoint)
-- [OpenAPI](openapi/keywordsai-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/keywordsai.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/keywordsai.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Collections (10)
 
-### Keywords AI Prompts API
+Postman and Open Collection request collections.
 
-Manage prompts and prompt versions outside of application code - create, list, retrieve, update, and delete prompts; create, commit, and deploy versions with templated messages, models, fallbacks, and sampling parameters.
+- [Keywords AI API](https://apis.io/collections/keywordsai/open-keywordsai/)
+- [Keywords AI Datasets API](https://apis.io/collections/keywordsai/open-keywordsai-datasets-api/)
+- [Keywords AI Datasets Evaluators API](https://apis.io/collections/keywordsai/open-keywordsai-evaluators-api/)
+- [Keywords AI Datasets Experiments API](https://apis.io/collections/keywordsai/open-keywordsai-experiments-api/)
+- [Keywords AI Datasets Gateway API](https://apis.io/collections/keywordsai/open-keywordsai-gateway-api/)
+- [Keywords AI Datasets Logging API](https://apis.io/collections/keywordsai/open-keywordsai-logging-api/)
+- [Keywords AI Datasets Prompts API](https://apis.io/collections/keywordsai/open-keywordsai-prompts-api/)
+- [Keywords AI Datasets Threads API](https://apis.io/collections/keywordsai/open-keywordsai-threads-api/)
+- [Keywords AI Datasets Traces API](https://apis.io/collections/keywordsai/open-keywordsai-traces-api/)
+- [Keywords AI Datasets Users API](https://apis.io/collections/keywordsai/open-keywordsai-users-api/)
 
-- **Human URL:** [https://docs.keywordsai.co/api-endpoints/prompt-endpoints/create-prompts](https://docs.keywordsai.co/api-endpoints/prompt-endpoints/create-prompts)
-- **Base URL:** `https://api.keywordsai.co/api`
+#### Governance rules (1)
 
-#### Tags
+Spectral rulesets for the provider's contracts.
 
-- Prompts
-- Prompt Management
-- Versioning
+- [Keywords AI — asyncapi rules](https://apis.io/rules/keywordsai/keywordsai-asyncapi-spectral-rules/)
 
-#### Properties
+#### Security (3)
 
-- [Documentation](https://docs.keywordsai.co/api-endpoints/prompt-endpoints/create-prompts)
-- [OpenAPI](openapi/keywordsai-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/keywordsai.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/keywordsai.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Authentication, trust centre, and vulnerability disclosure.
 
-### Keywords AI Threads API
+- [Keywordsai Authentication](https://apis.io/security/keywordsai/keywordsai-authentication/)
+- [Keywordsai Domain Security](https://apis.io/security/keywordsai/keywordsai-domain-security/)
+- [Keywordsai Trust Center](https://apis.io/security/keywordsai/keywordsai-trust-center/)
 
-Query multi-turn conversation threads grouped from logged LLM calls, with filtering and pagination for reconstructing end-user sessions.
+#### Plans and pricing (1)
 
-- **Human URL:** [https://docs.keywordsai.co/api-endpoints/data-endpoints/list-threads](https://docs.keywordsai.co/api-endpoints/data-endpoints/list-threads)
-- **Base URL:** `https://api.keywordsai.co/api`
+Published plans, tiers and prices.
 
-#### Tags
+- [Keywordsai Plans Pricing](https://apis.io/plans/keywordsai/keywordsai-plans-pricing/)
 
-- Threads
-- Conversations
-- Observability
+#### Rate limits (1)
 
-#### Properties
+Published request limits.
 
-- [Documentation](https://docs.keywordsai.co/api-endpoints/data-endpoints/list-threads)
-- [OpenAPI](openapi/keywordsai-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/keywordsai.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/keywordsai.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Keywordsai Rate Limits](https://apis.io/rate-limits/keywordsai/keywordsai-rate-limits/)
 
-### Keywords AI Evaluations API
+#### FinOps (1)
 
-Create and run evaluators to score LLM outputs - manage evaluator definitions and execute them against logs and datasets to measure quality, correctness, and safety.
+What the API costs to run, by operation.
 
-- **Human URL:** [https://docs.keywordsai.co/api-endpoints/evaluator-endpoints/create-evaluator](https://docs.keywordsai.co/api-endpoints/evaluator-endpoints/create-evaluator)
-- **Base URL:** `https://api.keywordsai.co/api`
+- [Keywordsai Finops](https://apis.io/finops/keywordsai/keywordsai-finops/)
 
-#### Tags
+## Where to find this API
 
-- Evaluations
-- Evaluators
-- Quality
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-#### Properties
-
-- [Documentation](https://docs.keywordsai.co/api-endpoints/evaluator-endpoints/create-evaluator)
-- [OpenAPI](openapi/keywordsai-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/keywordsai.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/keywordsai.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Keywords AI Traces API
-
-List, retrieve, and delete distributed traces (OpenTelemetry-aligned spans) capturing agent and multi-step LLM workflows for observability and debugging.
-
-- **Human URL:** [https://docs.keywordsai.co/api-endpoints/data-endpoints/list-traces](https://docs.keywordsai.co/api-endpoints/data-endpoints/list-traces)
-- **Base URL:** `https://api.keywordsai.co/api`
-
-#### Tags
-
-- Traces
-- OpenTelemetry
-- Observability
-
-#### Properties
-
-- [Documentation](https://docs.keywordsai.co/api-endpoints/data-endpoints/list-traces)
-- [OpenAPI](openapi/keywordsai-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/keywordsai.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/keywordsai.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [GitHub Organization](https://github.com/Keywords-AI)
-- [LinkedIn](https://www.linkedin.com/company/keywordsai)
 - [Website](https://www.keywordsai.co)
 - [Documentation](https://docs.keywordsai.co)
-- [Plans](plans/keywordsai-plans-pricing.yml)
-- [Rate Limits](rate-limits/keywordsai-rate-limits.yml)
-- [Fin Ops](finops/keywordsai-finops.yml)
+- [Blog](https://www.respan.ai/blog)
+- [GitHub](https://github.com/Keywords-AI)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 31.0** — thin · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 68.3 |
+| Contract quality | 55.5 |
+| Contract governance | 11.4 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 25.0 |
+| Access clarity | 15.8 |
+
+**Agent readiness 45.8** — agent-ready (gated down from agent-native)
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | verified |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | derived (partial credit) |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | verified |
+| Dynamic Client Registration | yes |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 15.5** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/keywordsai/](https://apis.io/providers/keywordsai/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Keywords AI: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/keywordsai/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
